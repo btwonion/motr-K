@@ -1,25 +1,32 @@
+# Materials of the Rift (MotR)
 
-Installation information
-=======
+[![License](https://www.gnu.org/licenses/agpl-3.0.en.html)]
+[![Issues]()]
+[![Build]()]
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+> **More shapes, fewer limits. Special blocks developed for Wanderers of the Rift, ready for any world.**
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+---
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+## 🧱**Materials of the Rift** 
+(MotR) is a mod for the *Wanderers of the Rift* modpack that introduces:
+- Extra block variants (walls, slabs, stairs, fences, gates, plates, buttons, carpets, panes)
+- Special blocks that bypass normal Minecraft rules (like gravity, placement, or melting)
+- Designed for Wanderers of the Rift, but usable in any modpack.
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+---
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+## 📂 Usage
+- Include in your .\minecraft\mods directory alongside *Wanderers of the Rift* or standalone in your own pack.
+
+---
+
+## 🔧Contributing
+If you're interested in contributing to the project, you can fork the repository and comment on any open issues.
+
+If you want a more involved role in the project, involving branches on the main repository and involvement in design discussions, join our discord: https://discord.gg/VkSeepd59S
+
+---
+
+## 📜 License
+This project is licensed under [AGPL-3.0 license](https://www.gnu.org/licenses/agpl-3.0.en.html)
