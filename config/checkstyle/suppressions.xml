@@ -5,6 +5,6 @@
         "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 
 <suppressions>
-    <suppress checks="MethodName" files="com[\\/]wanderersoftherift[\\/]wotr[\\/]mixin[\\/]"/>
-    <suppress checks="MethodName" files="com[\\/]wanderersoftherift[\\/]wotr[\\/]mixinextension[\\/]"/>
+    <suppress checks="MethodName" files="com[\\/]materialsoftherift[\\/]motr[\\/]mixin[\\/]"/>
+    <suppress checks="MethodName" files="com[\\/]materialsoftherift[\\/]motr[\\/]mixinextension[\\/]"/>
 </suppressions>
