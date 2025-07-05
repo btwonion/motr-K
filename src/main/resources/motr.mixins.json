@@ -5,12 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "motr.refmap.json",
   "mixins": [
-    "AccessorMappedRegistry",
-    "AccessorMinecraftServer",
-    "InvokerAbstractContainerMenu",
-    "InvokerBlockBehaviour",
-    "MixinStructureTemplate",
-    "MixinWorldDimensions"
+    "InvokerBlockBehaviour"
   ],
   "client": [
   ],
