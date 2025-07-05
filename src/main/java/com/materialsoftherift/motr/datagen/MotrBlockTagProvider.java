@@ -1,0 +1,143 @@
+package com.materialsoftherift.motr.datagen;
+
+import com.materialsoftherift.motr.MaterialsOfTheRift;
+import com.materialsoftherift.motr.init.MotrBlocks;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Stream;
+
+public class MotrBlockTagProvider extends BlockTagsProvider {
+    public MotrBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+        super(output, lookupProvider, MaterialsOfTheRift.MODID);
+    }
+
+    @Override
+    protected void addTags(HolderLookup.@NotNull Provider provider) {
+        // spotless:off
+        tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .add(MotrBlocks.WHITE_CONCRETE_SLAB.slab().get())
+                .add(MotrBlocks.ORANGE_CONCRETE_SLAB.slab().get())
+                .add(MotrBlocks.MAGENTA_CONCRETE_SLAB.slab().get())
+                .add(MotrBlocks.LIGHT_BLUE_CONCRETE_SLAB.slab().get())
+                .add(MotrBlocks.YELLOW_CONCRETE_SLAB.slab().get())
+                .add(MotrBlocks.LIME_CONCRETE_SLAB.slab().get())
+                .add(MotrBlocks.PINK_CONCRETE_SLAB.slab().get())
+                .add(MotrBlocks.GRAY_CONCRETE_SLAB.slab().get())
+                .add(MotrBlocks.LIGHT_GRAY_CONCRETE_SLAB.slab().get())
+                .add(MotrBlocks.CYAN_CONCRETE_SLAB.slab().get())
+                .add(MotrBlocks.PURPLE_CONCRETE_SLAB.slab().get())
+                .add(MotrBlocks.BLUE_CONCRETE_SLAB.slab().get())
+                .add(MotrBlocks.BROWN_CONCRETE_SLAB.slab().get())
+                .add(MotrBlocks.GREEN_CONCRETE_SLAB.slab().get())
+                .add(MotrBlocks.RED_CONCRETE_SLAB.slab().get())
+                .add(MotrBlocks.BLACK_CONCRETE_SLAB.slab().get())
+
+                .add(MotrBlocks.GLASS_SLAB.slab().get())
+                .add(MotrBlocks.TINTED_GLASS_SLAB.slab().get())
+                .add(MotrBlocks.WHITE_STAINED_GLASS_SLAB.slab().get())
+                .add(MotrBlocks.ORANGE_STAINED_GLASS_SLAB.slab().get())
+                .add(MotrBlocks.MAGENTA_STAINED_GLASS_SLAB.slab().get())
+                .add(MotrBlocks.LIGHT_BLUE_STAINED_GLASS_SLAB.slab().get())
+                .add(MotrBlocks.YELLOW_STAINED_GLASS_SLAB.slab().get())
+                .add(MotrBlocks.LIME_STAINED_GLASS_SLAB.slab().get())
+                .add(MotrBlocks.PINK_STAINED_GLASS_SLAB.slab().get())
+                .add(MotrBlocks.GRAY_STAINED_GLASS_SLAB.slab().get())
+                .add(MotrBlocks.LIGHT_GRAY_STAINED_GLASS_SLAB.slab().get())
+                .add(MotrBlocks.CYAN_STAINED_GLASS_SLAB.slab().get())
+                .add(MotrBlocks.PURPLE_STAINED_GLASS_SLAB.slab().get())
+                .add(MotrBlocks.BLUE_STAINED_GLASS_SLAB.slab().get())
+                .add(MotrBlocks.BROWN_STAINED_GLASS_SLAB.slab().get())
+                .add(MotrBlocks.GREEN_STAINED_GLASS_SLAB.slab().get())
+                .add(MotrBlocks.RED_STAINED_GLASS_SLAB.slab().get())
+                .add(MotrBlocks.BLACK_STAINED_GLASS_SLAB.slab().get())
+
+                .add(MotrBlocks.TUBE_CORAL_BLOCK_SLAB.slab().get())
+                .add(MotrBlocks.BRAIN_CORAL_BLOCK_SLAB.slab().get())
+                .add(MotrBlocks.BUBBLE_CORAL_BLOCK_SLAB.slab().get())
+                .add(MotrBlocks.FIRE_CORAL_BLOCK_SLAB.slab().get())
+                .add(MotrBlocks.HORN_CORAL_BLOCK_SLAB.slab().get())
+                .add(MotrBlocks.GOLD_BLOCK_SLAB.slab().get())
+                .add(MotrBlocks.IRON_BLOCK_SLAB.slab().get())
+                .add(MotrBlocks.RAW_IRON_BLOCK_SLAB.slab().get())
+                .add(MotrBlocks.RAW_GOLD_BLOCK_SLAB.slab().get())
+                .add(MotrBlocks.PACKED_ICE_SLAB.slab().get())
+                .add(MotrBlocks.ICE_SLAB.slab().get())
+                .add(MotrBlocks.BLUE_ICE_SLAB.slab().get())
+                .add(MotrBlocks.GILDED_BLACKSTONE_SLAB.slab().get())
+                .add(MotrBlocks.BONE_BLOCK_SLAB.slab().get())
+                .add(MotrBlocks.CLAY_SLAB.slab().get())
+                .add(MotrBlocks.RESIN_BLOCK_SLAB.slab().get());
+
+        tag(BlockTags.MINEABLE_WITH_SHOVEL)
+                .add(MotrBlocks.DIRT_SLAB.slab().get())
+                .add(MotrBlocks.COARSE_DIRT_SLAB.slab().get())
+                .add(MotrBlocks.ROOTED_DIRT_SLAB.slab().get())
+                .add(MotrBlocks.PODZOL_SLAB.slab().get())
+                .add(MotrBlocks.MYCELIUM_SLAB.slab().get())
+                .add(MotrBlocks.DIRT_PATH_SLAB.slab().get())
+                .add(MotrBlocks.SOUL_SAND_SLAB.slab().get())
+                .add(MotrBlocks.SOUL_SOIL_SLAB.slab().get())
+                .add(MotrBlocks.MUD_SLAB.slab().get())
+                .add(MotrBlocks.MUDDY_MANGROVE_ROOTS_SLAB.slab().get())
+
+                .add(MotrBlocks.WHITE_CONCRETE_POWDER_SLAB.slab().get())
+                .add(MotrBlocks.ORANGE_CONCRETE_POWDER_SLAB.slab().get())
+                .add(MotrBlocks.MAGENTA_CONCRETE_POWDER_SLAB.slab().get())
+                .add(MotrBlocks.LIGHT_BLUE_CONCRETE_POWDER_SLAB.slab().get())
+                .add(MotrBlocks.YELLOW_CONCRETE_POWDER_SLAB.slab().get())
+                .add(MotrBlocks.LIME_CONCRETE_POWDER_SLAB.slab().get())
+                .add(MotrBlocks.PINK_CONCRETE_POWDER_SLAB.slab().get())
+                .add(MotrBlocks.GRAY_CONCRETE_POWDER_SLAB.slab().get())
+                .add(MotrBlocks.LIGHT_GRAY_CONCRETE_POWDER_SLAB.slab().get())
+                .add(MotrBlocks.CYAN_CONCRETE_POWDER_SLAB.slab().get())
+                .add(MotrBlocks.PURPLE_CONCRETE_POWDER_SLAB.slab().get())
+                .add(MotrBlocks.BLUE_CONCRETE_POWDER_SLAB.slab().get())
+                .add(MotrBlocks.BROWN_CONCRETE_POWDER_SLAB.slab().get())
+                .add(MotrBlocks.GREEN_CONCRETE_POWDER_SLAB.slab().get())
+                .add(MotrBlocks.RED_CONCRETE_POWDER_SLAB.slab().get())
+                .add(MotrBlocks.BLACK_CONCRETE_POWDER_SLAB.slab().get());
+
+        tag(BlockTags.DIRT)
+                .add(MotrBlocks.DIRT_SLAB.slab().get())
+                .add(MotrBlocks.DIRT_PATH_SLAB.slab().get())
+                .add(MotrBlocks.COARSE_DIRT_SLAB.slab().get())
+                .add(MotrBlocks.ROOTED_DIRT_SLAB.slab().get())
+                .add(MotrBlocks.PODZOL_SLAB.slab().get())
+                .add(MotrBlocks.MYCELIUM_SLAB.slab().get());
+
+        tag(BlockTags.SOUL_SPEED_BLOCKS)
+                .add(MotrBlocks.SOUL_SAND_SLAB.slab().get())
+                .add(MotrBlocks.SOUL_SOIL_SLAB.slab().get());
+
+        tag(BlockTags.SOUL_FIRE_BASE_BLOCKS)
+                .add(MotrBlocks.SOUL_SAND_SLAB.slab().get())
+                .add(MotrBlocks.SOUL_SOIL_SLAB.slab().get());
+
+        tag(BlockTags.ICE)
+                .add(MotrBlocks.ICE_SLAB.slab().get())
+                .add(MotrBlocks.PACKED_ICE_SLAB.slab().get())
+                .add(MotrBlocks.BLUE_ICE_SLAB.slab().get());
+
+        tag(BlockTags.SLABS)
+                .add(getAllSlabBlocks());
+
+        // spotless:on
+
+    }
+
+    private Block[] getAllSlabBlocks() {
+        return Stream.of(
+                MotrBlocks.REGISTERED_STANDARD_SLABS.values().stream(),
+                MotrBlocks.REGISTERED_GLASS_SLABS.values().stream(),
+                MotrBlocks.REGISTERED_DIRECTIONAL_SLABS.values().stream(),
+                MotrBlocks.REGISTERED_TRIMM_SLABS.values().stream()
+        ).flatMap(stream -> stream).map(slabInfo -> slabInfo.slab().get()).toArray(Block[]::new);
+    }
+
+}
