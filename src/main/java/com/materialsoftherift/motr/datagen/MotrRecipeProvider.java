@@ -75,7 +75,7 @@ public class MotrRecipeProvider extends RecipeProvider {
 
         @Override
         public @NotNull String getName() {
-            return "Wanderers of the Rift's Recipes";
+            return "Materials of the Rift's Recipes";
         }
     }
 }
