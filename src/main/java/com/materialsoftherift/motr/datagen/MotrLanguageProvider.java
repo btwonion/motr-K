@@ -25,7 +25,10 @@ public class MotrLanguageProvider extends LanguageProvider {
 
         // Adds a block translation.
 
-        // addBlock(WotrBlocks.RUNE_ANVIL_ENTITY_BLOCK, "Rune Anvil"); left this as example!
+        // addBlock(MotrBlocks.RUNE_ANVIL_ENTITY_BLOCK, "Rune Anvil"); left this as example!
+
+        add("itemGroup." + MaterialsOfTheRift.MODID, "MOTR");
+
     }
 
     private static @NotNull String getTranslationString(Block block) {
