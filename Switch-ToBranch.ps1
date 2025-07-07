@@ -1,52 +1,87 @@
 # Switch-ToBranch-WithSSH.ps1
-# This script switches the working directory to match a specified remote branch,
-# updating origin to use SSH and discarding any local changes.
-
+# This script switches the working directory to match a specified remote branch and discarding any local changes.
 
 # Ensure SSH keys are set up before proceeding
+
 function Ensure-GitSSH {
-    Write-Host "Checking for SSH key..."
+    Write-Host "Checking if SSH already works with GitHub..."
 
-    $sshDir = "$env:USERPROFILE\.ssh"
-    $privateKey = Get-ChildItem -Path $sshDir -Include id_rsa, id_ed25519 -File -ErrorAction SilentlyContinue
+    # Try to SSH directly
+    ssh -T git@github.com 2>$null
+    if ($LASTEXITCODE -eq 1 -or $LASTEXITCODE -eq 255) {
+        Write-Host "SSH connection to GitHub failed or not yet authorized."
 
-    if (-not $privateKey) {
-        Write-Host "No SSH key found. Generating a new SSH key."
+        $sshDir = "$env:USERPROFILE\.ssh"
+        $privateKeys = Get-ChildItem -Path $sshDir -File | Where-Object { $_.Name -notlike "*.pub" }
 
-        $email = Read-Host "Enter your email for SSH key"
-        # Generate new SSH key
-        ssh-keygen -t ed25519 -C $email -f "$sshDir\id_ed25519" -N ""
+        if (-not $privateKeys) {
+            Write-Host "No existing SSH keys found. Generating a new SSH key."
+            ssh-keygen -t ed25519 -f "$sshDir\id_ed25519" -N ""
+            $privateKeys = @(Get-ChildItem -Path $sshDir -File | Where-Object { $_.Name -notlike "*.pub" })
+        } else {
+            Write-Host "Found existing SSH key(s):"
+            $privateKeys | ForEach-Object { Write-Host " - $($_.Name)" }
+        }
 
-        Write-Host "SSH key generated."
+        Write-Host "Starting ssh-agent and adding your first private key."
+        Start-Process powershell -ArgumentList "-NoExit","-Command \"ssh-agent -s; ssh-add '$($privateKeys[0].FullName)'\""
+
+        $pubKeyPath = "$($privateKeys[0].FullName).pub"
+        if (-not (Test-Path $pubKeyPath)) {
+            $pubKeyPath = Get-ChildItem -Path $sshDir -File | Where-Object { $_.Name -like "*.pub" } | Select-Object -First 1 | ForEach-Object { $_.FullName }
+        }
+
+        Write-Host "`nCopy the SSH public key below and add it to your GitHub account:"
+        Write-Host "--------------------------------------"
+        Get-Content $pubKeyPath
+        Write-Host "--------------------------------------"
+
+        Write-Host ""
+        Write-Host "1. Go to your SSH keys page on GitHub:"
+        Write-Host "   https://github.com/settings/keys"
+        Write-Host ""
+        Write-Host "2. Click 'New SSH key'."
+        Write-Host "3. Paste the key you copied."
+        Write-Host "4. Give it a title like 'My-PC' and save."
+
+        Read-Host "Press Enter after you've added the SSH key to your GitHub account..."
+
+        Write-Host "Testing SSH connection again..."
+        ssh -T git@github.com
     } else {
-        Write-Host "SSH key already exists."
+        Write-Host "SSH already set up and working with GitHub."
     }
+}
 
-    # Start ssh-agent and add private keys
-    Write-Host "Starting ssh-agent and adding your key."
-    # Start ssh-agent and add private keys
-    Start-Process powershell -ArgumentList "-NoExit","-Command \"ssh-agent -s; ssh-add $sshDir\id_ed25519 2>$null; ssh-add $sshDir\id_rsa 2>$null\""
+else {
+    Write-Host "SSH key already exists."
+}
 
-    $pubKeyPath = if (Test-Path "$sshDir\id_ed25519.pub") { "$sshDir\id_ed25519.pub" } else { "$sshDir\id_rsa.pub" }
+# Start ssh-agent and add private keys
+Write-Host "Starting ssh-agent and adding your key."
+# Start ssh-agent and add private keys
+Start-Process powershell -ArgumentList "-NoExit","-Command \"ssh-agent -s; ssh-add $sshDir\id_ed25519 2>$null; ssh-add $sshDir\id_rsa 2>$null\""
 
-    Write-Host "`nCopy the SSH public key below and add it to your GitHub account:"
-    Write-Host "--------------------------------------"
-    Get-Content $pubKeyPath
-    Write-Host "--------------------------------------"
+$pubKeyPath = if (Test-Path "$sshDir\id_ed25519.pub") { "$sshDir\id_ed25519.pub" } else { "$sshDir\id_rsa.pub" }
 
-    Write-Host ""
-    Write-Host "1. Go to your SSH keys page on GitHub:"
-    Write-Host "   https://github.com/settings/keys"
-    Write-Host ""
-    Write-Host "2. Click 'New SSH key'."
-    Write-Host "3. Paste the key you copied."
-    Write-Host "4. Give it a title like 'My-PC' and save."
+Write-Host "`nCopy the SSH public key below and add it to your GitHub account:"
+Write-Host "--------------------------------------"
+Get-Content $pubKeyPath
+Write-Host "--------------------------------------"
 
-    Read-Host "Press Enter after you've added the SSH key to your GitHub account..."
+Write-Host ""
+Write-Host "1. Go to your SSH keys page on GitHub:"
+Write-Host "   https://github.com/settings/keys"
+Write-Host ""
+Write-Host "2. Click 'New SSH key'."
+Write-Host "3. Paste the key you copied."
+Write-Host "4. Give it a title like 'My-PC' and save."
 
-    Write-Host "Testing SSH connection to GitHub..."
-    # Verify SSH connection to GitHub
-    ssh -T git@github.com
+Read-Host "Press Enter after you've added the SSH key to your GitHub account..."
+
+Write-Host "Testing SSH connection to GitHub..."
+# Verify SSH connection to GitHub
+ssh -T git@github.com
 }
 
 # Call the function before doing git work
@@ -81,20 +116,20 @@ git fetch --all
 
 # Stash local changes if any
 if (git status --porcelain) {
-    Write-Host "Stashing uncommitted changes (including untracked)..." -ForegroundColor Yellow
-    # Stash any local changes to avoid conflicts
-    git stash push -u -m "Auto-stash before switching to $branchName"
+Write-Host "Stashing uncommitted changes (including untracked)..." -ForegroundColor Yellow
+# Stash any local changes to avoid conflicts
+git stash push -u -m "Auto-stash before switching to $branchName"
 }
 
 # Checkout or create the target branch
 if (-not (git rev-parse --verify $branchName 2>$null)) {
-    Write-Host "Branch '$branchName' not found locally. Creating and tracking origin/$branchName..." -ForegroundColor Cyan
-    # Create and checkout new branch
-    git checkout -b $branchName "origin/$branchName"
+Write-Host "Branch '$branchName' not found locally. Creating and tracking origin/$branchName..." -ForegroundColor Cyan
+# Create and checkout new branch
+git checkout -b $branchName "origin/$branchName"
 } else {
-    Write-Host "Checking out existing branch '$branchName'..." -ForegroundColor Cyan
-    # Checkout existing branch
-    git checkout $branchName
+Write-Host "Checking out existing branch '$branchName'..." -ForegroundColor Cyan
+# Checkout existing branch
+git checkout $branchName
 }
 
 # Hard reset to remote branch
