@@ -69,4 +69,4 @@ Read-Host "Press Enter to continue..."
 
 Start-Process "https://github.com/settings/keys"
 
-Read-Host "After you've added the SSH key to GitHub, press Enter to exit"
+Read-Host "After you've added the SSH key to GitHub press Enter to exit"
