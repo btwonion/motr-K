@@ -1,50 +1,45 @@
 function Ensure-GitSSH {
     Write-Host "Checking if SSH already works with GitHub..."
-
-    # Try SSH directly
     ssh -T git@github.com 2>$null
     if ($LASTEXITCODE -eq 1 -or $LASTEXITCODE -eq 255) {
-        Write-Host "SSH connection to GitHub failed or not yet authorized."
+        Write-Host "SSH connection failed. Trying to start ssh-agent and add key."
 
         $sshDir = "$env:USERPROFILE\.ssh"
-        $privateKeys = Get-ChildItem -Path $sshDir -File | Where-Object { $_.Name -notlike '*.pub' }
-
-        if (-not $privateKeys) {
-            Write-Host "No existing SSH keys found. Generating a new SSH key."
-            ssh-keygen -t ed25519 -f "$sshDir\id_ed25519" -N ""
-            $privateKeys = @(Get-ChildItem -Path $sshDir -File | Where-Object { $_.Name -notlike '*.pub' })
-        } else {
-            Write-Host "Found existing SSH key(s):"
-            $privateKeys | ForEach-Object { Write-Host " - $($_.Name)" }
+        $privateKeys = Get-ChildItem -Path $sshDir -File | Where-Object {
+            $_.Name -notlike '*.pub' -and $_.Length -gt 100
         }
 
-        Write-Host "Starting ssh-agent and adding your first private key."
-        Start-Process powershell -ArgumentList "-NoExit","-Command `\"ssh-agent -s; ssh-add '$($privateKeys[0].FullName)'`\""
+        if (-not $privateKeys) {
+            Write-Host "No private SSH keys found. Generating new one."
+            ssh-keygen -t ed25519 -f "$sshDir\id_ed25519" -N ""
+            $privateKeys = @(Get-ChildItem -Path $sshDir -File | Where-Object {
+                $_.Name -notlike '*.pub' -and $_.Length -gt 100
+            })
+        }
+
+        Write-Host "Starting ssh-agent..."
+        $agentOutput = ssh-agent
+        Invoke-Expression $agentOutput
+
+        Write-Host "Adding private key to agent..."
+        ssh-add $privateKeys[0].FullName
 
         $pubKeyPath = "$($privateKeys[0].FullName).pub"
         if (-not (Test-Path $pubKeyPath)) {
             $pubKeyPath = Get-ChildItem -Path $sshDir -File | Where-Object { $_.Name -like '*.pub' } | Select-Object -First 1 | ForEach-Object { $_.FullName }
         }
 
-        Write-Host "`nCopy the SSH public key below and add it to your GitHub account:"
+        Write-Host "`nCopy the SSH public key below and add it to GitHub:"
         Write-Host "--------------------------------------"
         Get-Content $pubKeyPath
         Write-Host "--------------------------------------"
-
-        Write-Host ""
-        Write-Host "1. Go to your SSH keys page on GitHub:"
-        Write-Host "   https://github.com/settings/keys"
-        Write-Host ""
-        Write-Host "2. Click 'New SSH key'."
-        Write-Host "3. Paste the key you copied."
-        Write-Host "4. Give it a title like 'My-PC' and save."
-
-        Read-Host "Press Enter after you've added the SSH key to your GitHub account..."
+        Write-Host "https://github.com/settings/keys"
+        Read-Host "Press Enter after adding key..."
 
         Write-Host "Testing SSH connection again..."
         ssh -T git@github.com
     } else {
-        Write-Host "SSH already set up and working with GitHub."
+        Write-Host "SSH already works with GitHub."
     }
 }
 
