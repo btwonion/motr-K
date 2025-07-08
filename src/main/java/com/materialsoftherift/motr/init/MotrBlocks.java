@@ -20,6 +20,17 @@ import java.util.function.Supplier;
 
 public class MotrBlocks {
 
+    public static class IceSlabBlock extends SlabBlock {
+        public IceSlabBlock(Properties properties) {
+            super(properties);
+        }
+
+        @Override
+        public float getFriction() {
+            return 0.98f;
+        }
+    }
+
     public static class SlabInfo {
         private final DeferredBlock<SlabBlock> slab;
         private final Block baseBlock;
@@ -655,8 +666,15 @@ public class MotrBlocks {
     }
 
     private static SlabInfo registerSlabBlock(String id, Block baseBlock) {
-        DeferredBlock<SlabBlock> slab = registerBlock(id,
-                () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(baseBlock).setId(blockId(id))));
+        DeferredBlock<SlabBlock> slab = registerBlock(id, () -> {
+            BlockBehaviour.Properties properties = BlockBehaviour.Properties.ofFullCopy(baseBlock).setId(blockId(id));
+
+            if (baseBlock == Blocks.ICE || baseBlock == Blocks.PACKED_ICE || baseBlock == Blocks.BLUE_ICE) {
+                return new MotrBlocks.IceSlabBlock(properties.friction(0.98f));
+            }
+
+            return new SlabBlock(properties);
+        });
         return new SlabInfo(slab, baseBlock);
     }
 
