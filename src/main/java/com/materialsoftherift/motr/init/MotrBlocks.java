@@ -321,6 +321,16 @@ public class MotrBlocks {
             Map.entry("pink_stained_glass", PINK_STAINED_GLASS_SLAB)
     );
 
+    public static final Map<String, SlabInfo> REGISTERED_DIRECTIONAL_SLABS = Map.ofEntries(
+            Map.entry("podzol", PODZOL_SLAB), Map.entry("muddy_mangrove_roots", MUDDY_MANGROVE_ROOTS_SLAB),
+            Map.entry("mycelium", MYCELIUM_SLAB), Map.entry("dirt_path", DIRT_PATH_SLAB),
+            Map.entry("bone_block", BONE_BLOCK_SLAB)
+    );
+
+    public static final Map<String, SlabInfo> REGISTERED_TRIMM_SLABS = Map.ofEntries(
+            Map.entry("gold_block", GOLD_BLOCK_SLAB), Map.entry("iron_block", IRON_BLOCK_SLAB)
+    );
+
     public static final WallInfo WHITE_CONCRETE_WALL = registerWallBlock("white_concrete_wall", Blocks.WHITE_CONCRETE);
     public static final WallInfo LIGHT_GRAY_CONCRETE_WALL = registerWallBlock("light_gray_concrete_wall",
             Blocks.LIGHT_GRAY_CONCRETE);
@@ -343,6 +353,7 @@ public class MotrBlocks {
     public static final WallInfo MAGENTA_CONCRETE_WALL = registerWallBlock("magenta_concrete_wall",
             Blocks.MAGENTA_CONCRETE);
     public static final WallInfo PINK_CONCRETE_WALL = registerWallBlock("pink_concrete_wall", Blocks.PINK_CONCRETE);
+
     public static final WallInfo GILDED_BLACKSTONE_WALL = registerWallBlock("gilded_blackstone",
             Blocks.GILDED_BLACKSTONE);
     public static final WallInfo GOLD_BLOCK_WALL = registerWallBlock("gold_block_wall", Blocks.GOLD_BLOCK);
@@ -363,26 +374,6 @@ public class MotrBlocks {
             Blocks.HORN_CORAL_BLOCK);
     public static final WallInfo TUBE_CORAL_BLOCK_WALL = registerWallBlock("tube_coral_block_wall",
             Blocks.TUBE_CORAL_BLOCK);
-
-    public static final Map<String, WallInfo> REGISTERED_STANDARD_WALLS = Map.ofEntries(
-            Map.entry("white_concrete", WHITE_CONCRETE_WALL),
-            Map.entry("light_gray_concrete", LIGHT_GRAY_CONCRETE_WALL), Map.entry("gray_concrete", GRAY_CONCRETE_WALL),
-            Map.entry("black_concrete", BLACK_CONCRETE_WALL), Map.entry("brown_concrete", BROWN_CONCRETE_WALL),
-            Map.entry("red_concrete", RED_CONCRETE_WALL), Map.entry("orange_concrete", ORANGE_CONCRETE_WALL),
-            Map.entry("yellow_concrete", YELLOW_CONCRETE_WALL), Map.entry("lime_concrete", LIME_CONCRETE_WALL),
-            Map.entry("green_concrete", GREEN_CONCRETE_WALL), Map.entry("cyan_concrete", CYAN_CONCRETE_WALL),
-            Map.entry("light_blue_concrete", LIGHT_BLUE_CONCRETE_WALL), Map.entry("blue_concrete", BLUE_CONCRETE_WALL),
-            Map.entry("purple_concrete", PURPLE_CONCRETE_WALL), Map.entry("magenta_concrete", MAGENTA_CONCRETE_WALL),
-            Map.entry("pink_concrete", PINK_CONCRETE_WALL), Map.entry("gilded_blackstone", GILDED_BLACKSTONE_WALL),
-            Map.entry("gold_block", GOLD_BLOCK_WALL), Map.entry("raw_gold_block", RAW_GOLD_BLOCK_WALL),
-            Map.entry("iron_block", IRON_BLOCK_WALL), Map.entry("raw_iron_block", RAW_IRON_BLOCK_WALL),
-            Map.entry("brain_coral_block", BRAIN_CORAL_BLOCK_WALL),
-            Map.entry("bubble_coral_block", BUBBLE_CORAL_BLOCK_WALL),
-            Map.entry("dead_fire_coral_block", DEAD_FIRE_CORAL_BLOCK_WALL),
-            Map.entry("dead_tube_coral_block", DEAD_TUBE_CORAL_BLOCK_WALL),
-            Map.entry("fire_coral_block", FIRE_CORAL_BLOCK_WALL), Map.entry("horn_coral_block", HORN_CORAL_BLOCK_WALL),
-            Map.entry("tube_coral_block", TUBE_CORAL_BLOCK_WALL)
-    );
 
     public static final WallInfo GLASS_WALL = registerWallBlock("glass_wall", Blocks.GLASS);
     public static final WallInfo TINTED_GLASS_WALL = registerWallBlock("tinted_glass_wall", Blocks.TINTED_GLASS);
@@ -418,6 +409,26 @@ public class MotrBlocks {
             Blocks.MAGENTA_STAINED_GLASS);
     public static final WallInfo PINK_STAINED_GLASS_WALL = registerWallBlock("pink_stained_glass_wall",
             Blocks.PINK_STAINED_GLASS);
+
+    public static final Map<String, WallInfo> REGISTERED_STANDARD_WALLS = Map.ofEntries(
+            Map.entry("white_concrete", WHITE_CONCRETE_WALL),
+            Map.entry("light_gray_concrete", LIGHT_GRAY_CONCRETE_WALL), Map.entry("gray_concrete", GRAY_CONCRETE_WALL),
+            Map.entry("black_concrete", BLACK_CONCRETE_WALL), Map.entry("brown_concrete", BROWN_CONCRETE_WALL),
+            Map.entry("red_concrete", RED_CONCRETE_WALL), Map.entry("orange_concrete", ORANGE_CONCRETE_WALL),
+            Map.entry("yellow_concrete", YELLOW_CONCRETE_WALL), Map.entry("lime_concrete", LIME_CONCRETE_WALL),
+            Map.entry("green_concrete", GREEN_CONCRETE_WALL), Map.entry("cyan_concrete", CYAN_CONCRETE_WALL),
+            Map.entry("light_blue_concrete", LIGHT_BLUE_CONCRETE_WALL), Map.entry("blue_concrete", BLUE_CONCRETE_WALL),
+            Map.entry("purple_concrete", PURPLE_CONCRETE_WALL), Map.entry("magenta_concrete", MAGENTA_CONCRETE_WALL),
+            Map.entry("pink_concrete", PINK_CONCRETE_WALL), Map.entry("gilded_blackstone", GILDED_BLACKSTONE_WALL),
+            Map.entry("gold_block", GOLD_BLOCK_WALL), Map.entry("raw_gold_block", RAW_GOLD_BLOCK_WALL),
+            Map.entry("iron_block", IRON_BLOCK_WALL), Map.entry("raw_iron_block", RAW_IRON_BLOCK_WALL),
+            Map.entry("brain_coral_block", BRAIN_CORAL_BLOCK_WALL),
+            Map.entry("bubble_coral_block", BUBBLE_CORAL_BLOCK_WALL),
+            Map.entry("dead_fire_coral_block", DEAD_FIRE_CORAL_BLOCK_WALL),
+            Map.entry("dead_tube_coral_block", DEAD_TUBE_CORAL_BLOCK_WALL),
+            Map.entry("fire_coral_block", FIRE_CORAL_BLOCK_WALL), Map.entry("horn_coral_block", HORN_CORAL_BLOCK_WALL),
+            Map.entry("tube_coral_block", TUBE_CORAL_BLOCK_WALL)
+    );
 
     public static final Map<String, WallInfo> REGISTERED_GLASS_WALLS = Map.ofEntries(
             Map.entry("glass", GLASS_WALL), Map.entry("tinted_glass", TINTED_GLASS_WALL),
@@ -471,6 +482,7 @@ public class MotrBlocks {
             registerButtonBlock("magenta_concrete_button", Blocks.MAGENTA_CONCRETE), Blocks.MAGENTA_CONCRETE);
     public static final ButtonInfo PINK_CONCRETE_BUTTON = new ButtonInfo(
             registerButtonBlock("pink_concrete_button", Blocks.PINK_CONCRETE), Blocks.PINK_CONCRETE);
+
     public static final ButtonInfo WHITE_TERRACOTTA_BUTTON = new ButtonInfo(
             registerButtonBlock("white_terracotta_button", Blocks.WHITE_TERRACOTTA), Blocks.WHITE_TERRACOTTA);
     public static final ButtonInfo LIGHT_GRAY_TERRACOTTA_BUTTON = new ButtonInfo(
@@ -505,12 +517,43 @@ public class MotrBlocks {
             registerButtonBlock("magenta_terracotta_button", Blocks.MAGENTA_TERRACOTTA), Blocks.MAGENTA_TERRACOTTA);
     public static final ButtonInfo PINK_TERRACOTTA_BUTTON = new ButtonInfo(
             registerButtonBlock("pink_terracotta_button", Blocks.PINK_TERRACOTTA), Blocks.PINK_TERRACOTTA);
+
     public static final ButtonInfo SANDSTONE_BUTTON = new ButtonInfo(
             registerButtonBlock("sandstone_button", Blocks.SANDSTONE), Blocks.SANDSTONE);
     public static final ButtonInfo RED_SANDSTONE_BUTTON = new ButtonInfo(
             registerButtonBlock("red_sandstone_button", Blocks.RED_SANDSTONE), Blocks.RED_SANDSTONE);
     public static final ButtonInfo MUD_BUTTON = new ButtonInfo(
             registerButtonBlock("mud_button", Blocks.MUD), Blocks.MUD);
+
+    public static final Map<String, ButtonInfo> REGISTERED_BUTTONS = Map.ofEntries(
+            Map.entry("black_concrete", BLACK_CONCRETE_BUTTON), Map.entry("blue_concrete", BLUE_CONCRETE_BUTTON),
+            Map.entry("brown_concrete", BROWN_CONCRETE_BUTTON), Map.entry("cyan_concrete", CYAN_CONCRETE_BUTTON),
+            Map.entry("gray_concrete", GRAY_CONCRETE_BUTTON), Map.entry("green_concrete", GREEN_CONCRETE_BUTTON),
+            Map.entry("light_blue_concrete", LIGHT_BLUE_CONCRETE_BUTTON),
+            Map.entry("light_gray_concrete", LIGHT_GRAY_CONCRETE_BUTTON),
+            Map.entry("lime_concrete", LIME_CONCRETE_BUTTON), Map.entry("magenta_concrete", MAGENTA_CONCRETE_BUTTON),
+            Map.entry("orange_concrete", ORANGE_CONCRETE_BUTTON), Map.entry("pink_concrete", PINK_CONCRETE_BUTTON),
+            Map.entry("purple_concrete", PURPLE_CONCRETE_BUTTON), Map.entry("red_concrete", RED_CONCRETE_BUTTON),
+            Map.entry("white_concrete", WHITE_CONCRETE_BUTTON), Map.entry("yellow_concrete", YELLOW_CONCRETE_BUTTON),
+
+            Map.entry("black_terracotta", BLACK_TERRACOTTA_BUTTON),
+            Map.entry("blue_terracotta", BLUE_TERRACOTTA_BUTTON),
+            Map.entry("brown_terracotta", BROWN_TERRACOTTA_BUTTON),
+            Map.entry("cyan_terracotta", CYAN_TERRACOTTA_BUTTON), Map.entry("gray_terracotta", GRAY_TERRACOTTA_BUTTON),
+            Map.entry("green_terracotta", GREEN_TERRACOTTA_BUTTON),
+            Map.entry("light_blue_terracotta", LIGHT_BLUE_TERRACOTTA_BUTTON),
+            Map.entry("light_gray_terracotta", LIGHT_GRAY_TERRACOTTA_BUTTON),
+            Map.entry("lime_terracotta", LIME_TERRACOTTA_BUTTON),
+            Map.entry("magenta_terracotta", MAGENTA_TERRACOTTA_BUTTON),
+            Map.entry("orange_terracotta", ORANGE_TERRACOTTA_BUTTON),
+            Map.entry("pink_terracotta", PINK_TERRACOTTA_BUTTON),
+            Map.entry("purple_terracotta", PURPLE_TERRACOTTA_BUTTON),
+            Map.entry("red_terracotta", RED_TERRACOTTA_BUTTON), Map.entry("white_terracotta", WHITE_TERRACOTTA_BUTTON),
+            Map.entry("yellow_terracotta", YELLOW_TERRACOTTA_BUTTON),
+
+            Map.entry("sandstone", SANDSTONE_BUTTON), Map.entry("red_sandstone", RED_SANDSTONE_BUTTON),
+            Map.entry("mud", MUD_BUTTON)
+    );
 
     public static final FenceInfo WHITE_CONCRETE_FENCE = new FenceInfo(
             registerFenceBlock("white_concrete_fence", Blocks.WHITE_CONCRETE), Blocks.WHITE_CONCRETE);
@@ -544,6 +587,7 @@ public class MotrBlocks {
             registerFenceBlock("magenta_concrete_fence", Blocks.MAGENTA_CONCRETE), Blocks.MAGENTA_CONCRETE);
     public static final FenceInfo PINK_CONCRETE_FENCE = new FenceInfo(
             registerFenceBlock("pink_concrete_fence", Blocks.PINK_CONCRETE), Blocks.PINK_CONCRETE);
+
     public static final FenceInfo WHITE_TERRACOTTA_FENCE = new FenceInfo(
             registerFenceBlock("white_terracotta_fence", Blocks.WHITE_TERRACOTTA), Blocks.WHITE_TERRACOTTA);
     public static final FenceInfo LIGHT_GRAY_TERRACOTTA_FENCE = new FenceInfo(
@@ -578,42 +622,13 @@ public class MotrBlocks {
             registerFenceBlock("magenta_terracotta_fence", Blocks.MAGENTA_TERRACOTTA), Blocks.MAGENTA_TERRACOTTA);
     public static final FenceInfo PINK_TERRACOTTA_FENCE = new FenceInfo(
             registerFenceBlock("pink_terracotta_fence", Blocks.PINK_TERRACOTTA), Blocks.PINK_TERRACOTTA);
+
     public static final FenceInfo SANDSTONE_FENCE = new FenceInfo(
             registerFenceBlock("sandstone_fence", Blocks.SANDSTONE), Blocks.SANDSTONE);
     public static final FenceInfo RED_SANDSTONE_FENCE = new FenceInfo(
             registerFenceBlock("red_sandstone_fence", Blocks.RED_SANDSTONE), Blocks.RED_SANDSTONE);
     public static final FenceInfo MUD_FENCE = new FenceInfo(
             registerFenceBlock("mud_fence", Blocks.MUD), Blocks.MUD);
-
-    public static final Map<String, ButtonInfo> REGISTERED_BUTTONS = Map.ofEntries(
-            Map.entry("black_concrete", BLACK_CONCRETE_BUTTON), Map.entry("blue_concrete", BLUE_CONCRETE_BUTTON),
-            Map.entry("brown_concrete", BROWN_CONCRETE_BUTTON), Map.entry("cyan_concrete", CYAN_CONCRETE_BUTTON),
-            Map.entry("gray_concrete", GRAY_CONCRETE_BUTTON), Map.entry("green_concrete", GREEN_CONCRETE_BUTTON),
-            Map.entry("light_blue_concrete", LIGHT_BLUE_CONCRETE_BUTTON),
-            Map.entry("light_gray_concrete", LIGHT_GRAY_CONCRETE_BUTTON),
-            Map.entry("lime_concrete", LIME_CONCRETE_BUTTON), Map.entry("magenta_concrete", MAGENTA_CONCRETE_BUTTON),
-            Map.entry("orange_concrete", ORANGE_CONCRETE_BUTTON), Map.entry("pink_concrete", PINK_CONCRETE_BUTTON),
-            Map.entry("purple_concrete", PURPLE_CONCRETE_BUTTON), Map.entry("red_concrete", RED_CONCRETE_BUTTON),
-            Map.entry("white_concrete", WHITE_CONCRETE_BUTTON), Map.entry("yellow_concrete", YELLOW_CONCRETE_BUTTON),
-
-            Map.entry("black_terracotta", BLACK_TERRACOTTA_BUTTON),
-            Map.entry("blue_terracotta", BLUE_TERRACOTTA_BUTTON),
-            Map.entry("brown_terracotta", BROWN_TERRACOTTA_BUTTON),
-            Map.entry("cyan_terracotta", CYAN_TERRACOTTA_BUTTON), Map.entry("gray_terracotta", GRAY_TERRACOTTA_BUTTON),
-            Map.entry("green_terracotta", GREEN_TERRACOTTA_BUTTON),
-            Map.entry("light_blue_terracotta", LIGHT_BLUE_TERRACOTTA_BUTTON),
-            Map.entry("light_gray_terracotta", LIGHT_GRAY_TERRACOTTA_BUTTON),
-            Map.entry("lime_terracotta", LIME_TERRACOTTA_BUTTON),
-            Map.entry("magenta_terracotta", MAGENTA_TERRACOTTA_BUTTON),
-            Map.entry("orange_terracotta", ORANGE_TERRACOTTA_BUTTON),
-            Map.entry("pink_terracotta", PINK_TERRACOTTA_BUTTON),
-            Map.entry("purple_terracotta", PURPLE_TERRACOTTA_BUTTON),
-            Map.entry("red_terracotta", RED_TERRACOTTA_BUTTON), Map.entry("white_terracotta", WHITE_TERRACOTTA_BUTTON),
-            Map.entry("yellow_terracotta", YELLOW_TERRACOTTA_BUTTON),
-
-            Map.entry("sandstone", SANDSTONE_BUTTON), Map.entry("red_sandstone", RED_SANDSTONE_BUTTON),
-            Map.entry("mud", MUD_BUTTON)
-    );
 
     public static final Map<String, FenceInfo> REGISTERED_FENCES = Map.ofEntries(
             Map.entry("black_concrete", BLACK_CONCRETE_FENCE), Map.entry("blue_concrete", BLUE_CONCRETE_FENCE),
@@ -641,16 +656,6 @@ public class MotrBlocks {
 
             Map.entry("sandstone", SANDSTONE_FENCE), Map.entry("red_sandstone", RED_SANDSTONE_FENCE),
             Map.entry("mud", MUD_FENCE)
-    );
-
-    public static final Map<String, SlabInfo> REGISTERED_DIRECTIONAL_SLABS = Map.ofEntries(
-            Map.entry("podzol", PODZOL_SLAB), Map.entry("muddy_mangrove_roots", MUDDY_MANGROVE_ROOTS_SLAB),
-            Map.entry("mycelium", MYCELIUM_SLAB), Map.entry("dirt_path", DIRT_PATH_SLAB),
-            Map.entry("bone_block", BONE_BLOCK_SLAB)
-    );
-
-    public static final Map<String, SlabInfo> REGISTERED_TRIMM_SLABS = Map.ofEntries(
-            Map.entry("gold_block", GOLD_BLOCK_SLAB), Map.entry("iron_block", IRON_BLOCK_SLAB)
     );
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String key, Supplier<T> sup) {
