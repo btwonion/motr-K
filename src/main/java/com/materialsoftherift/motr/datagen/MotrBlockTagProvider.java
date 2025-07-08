@@ -72,7 +72,10 @@ public class MotrBlockTagProvider extends BlockTagsProvider {
                 .add(MotrBlocks.GILDED_BLACKSTONE_SLAB.slab().get())
                 .add(MotrBlocks.BONE_BLOCK_SLAB.slab().get())
                 .add(MotrBlocks.CLAY_SLAB.slab().get())
-                .add(MotrBlocks.RESIN_BLOCK_SLAB.slab().get());
+                .add(MotrBlocks.RESIN_BLOCK_SLAB.slab().get())
+                .add(getAllButtonBlocks())
+                .add(getAllFenceBlocks())
+                .add(getAllWallBlocks());
 
         tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(MotrBlocks.DIRT_SLAB.slab().get())
@@ -130,6 +133,11 @@ public class MotrBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.WALLS)
                 .add(getAllWallBlocks());
 
+        tag(BlockTags.FENCES)
+                .add(getAllFenceBlocks());
+
+        tag(BlockTags.BUTTONS)
+                .add(getAllButtonBlocks());
 
         // spotless:on
 
@@ -151,5 +159,18 @@ public class MotrBlockTagProvider extends BlockTagsProvider {
         ).map(wallInfo -> wallInfo.wall().get()).toArray(Block[]::new);
     }
 
+    private Block[] getAllButtonBlocks() {
+        return MotrBlocks.REGISTERED_BUTTONS.values()
+                .stream()
+                .map(buttonInfo -> buttonInfo.button().get())
+                .toArray(Block[]::new);
+    }
+
+    private Block[] getAllFenceBlocks() {
+        return MotrBlocks.REGISTERED_FENCES.values()
+                .stream()
+                .map(fenceInfo -> fenceInfo.fence().get())
+                .toArray(Block[]::new);
+    }
 
 }

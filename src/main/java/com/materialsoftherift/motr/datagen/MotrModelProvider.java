@@ -10,14 +10,11 @@ import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.blockstates.Variant;
 import net.minecraft.client.data.models.blockstates.VariantProperties;
 import net.minecraft.client.data.models.model.ItemModelUtils;
-import net.minecraft.client.data.models.model.ModelLocationUtils;
-import net.minecraft.client.data.models.model.ModelTemplate;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.SlabType;
@@ -43,7 +40,6 @@ public class MotrModelProvider extends ModelProvider {
         MotrBlocks.REGISTERED_TRIMM_SLABS.forEach((id, slabInfo) -> {
             registerTrimmSlabModel(blockModels, slabInfo.slab().get(), id, id, id);
         });
-
 
         MotrBlocks.REGISTERED_DIRECTIONAL_SLABS.forEach((id, slabInfo) -> {
             {
@@ -82,8 +78,7 @@ public class MotrModelProvider extends ModelProvider {
             );
 
             itemModels.itemModelOutput.accept(
-                    wallInfo.wall().get().asItem(),
-                    ItemModelUtils.plainModel(itemModel)
+                    wallInfo.wall().get().asItem(), ItemModelUtils.plainModel(itemModel)
             );
 
         });
@@ -99,14 +94,18 @@ public class MotrModelProvider extends ModelProvider {
             );
 
             itemModels.itemModelOutput.accept(
-                    wallInfo.wall().get().asItem(),
-                    ItemModelUtils.plainModel(itemModel)
+                    wallInfo.wall().get().asItem(), ItemModelUtils.plainModel(itemModel)
             );
 
         });
 
+        MotrBlocks.REGISTERED_BUTTONS.forEach((textureName, buttonInfo) -> {
+            registerButtonModel(blockModels, itemModels, buttonInfo.button().get(), textureName);
+        });
 
-
+        MotrBlocks.REGISTERED_FENCES.forEach((textureName, fenceInfo) -> {
+            registerFenceModel(blockModels, itemModels, fenceInfo.fence().get(), textureName);
+        });
 
     }
 
@@ -240,8 +239,8 @@ public class MotrModelProvider extends ModelProvider {
     }
 
     private void registerWallModel(BlockModelGenerators blockModels, Block wall, String textureName) {
-        TextureMapping mapping = new TextureMapping()
-                .put(TextureSlot.WALL, ResourceLocation.withDefaultNamespace("block/" + textureName));
+        TextureMapping mapping = new TextureMapping().put(TextureSlot.WALL,
+                ResourceLocation.withDefaultNamespace("block/" + textureName));
 
         ResourceLocation post = ModelTemplates.WALL_POST.create(wall, mapping, blockModels.modelOutput);
         ResourceLocation lowSide = ModelTemplates.WALL_LOW_SIDE.create(wall, mapping, blockModels.modelOutput);
@@ -283,6 +282,49 @@ public class MotrModelProvider extends ModelProvider {
         );
     }
 
+    private void registerButtonModel(
+            BlockModelGenerators blockModels,
+            ItemModelGenerators itemModels,
+            Block button,
+            String textureName) {
+        TextureMapping mapping = new TextureMapping().put(TextureSlot.TEXTURE,
+                ResourceLocation.withDefaultNamespace("block/" + textureName));
 
+        ResourceLocation pressed = ModelTemplates.BUTTON_PRESSED.createWithSuffix(button, "_pressed", mapping,
+                blockModels.modelOutput);
+        ResourceLocation unpressed = ModelTemplates.BUTTON.create(button, mapping, blockModels.modelOutput);
+        ResourceLocation inventory = ModelTemplates.BUTTON_INVENTORY.createWithSuffix(button, "_inventory", mapping,
+                blockModels.modelOutput);
+
+        blockModels.blockStateOutput.accept(
+                BlockModelGenerators.createButton(button, unpressed, pressed)
+        );
+
+        itemModels.itemModelOutput.accept(
+                button.asItem(), ItemModelUtils.plainModel(inventory)
+        );
+    }
+
+    private void registerFenceModel(
+            BlockModelGenerators blockModels,
+            ItemModelGenerators itemModels,
+            Block fence,
+            String textureName) {
+        TextureMapping mapping = new TextureMapping().put(TextureSlot.TEXTURE,
+                ResourceLocation.withDefaultNamespace("block/" + textureName));
+
+        ResourceLocation post = ModelTemplates.FENCE_POST.create(fence, mapping, blockModels.modelOutput);
+        ResourceLocation side = ModelTemplates.FENCE_SIDE.create(fence, mapping, blockModels.modelOutput);
+        ResourceLocation inventory = ModelTemplates.FENCE_INVENTORY.createWithSuffix(fence, "_inventory", mapping,
+                blockModels.modelOutput);
+
+        blockModels.blockStateOutput.accept(
+                BlockModelGenerators.createFence(fence, post, side)
+        );
+
+        itemModels.itemModelOutput.accept(
+                fence.asItem(), ItemModelUtils.plainModel(inventory)
+        );
+    }
 
 }

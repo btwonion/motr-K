@@ -7,8 +7,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ButtonBlock;
+import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -62,6 +65,50 @@ public class MotrBlocks {
 
         public Item getWallItem() {
             return wall.get().asItem();
+        }
+    }
+
+    public static class ButtonInfo {
+        private final DeferredBlock<ButtonBlock> button;
+        private final Block baseBlock;
+
+        public ButtonInfo(DeferredBlock<ButtonBlock> button, Block baseBlock) {
+            this.button = button;
+            this.baseBlock = baseBlock;
+        }
+
+        public DeferredBlock<ButtonBlock> button() {
+            return button;
+        }
+
+        public Block baseBlock() {
+            return baseBlock;
+        }
+
+        public Item getBaseItem() {
+            return baseBlock.asItem();
+        }
+    }
+
+    public static class FenceInfo {
+        private final DeferredBlock<FenceBlock> fence;
+        private final Block baseBlock;
+
+        public FenceInfo(DeferredBlock<FenceBlock> fence, Block baseBlock) {
+            this.fence = fence;
+            this.baseBlock = baseBlock;
+        }
+
+        public DeferredBlock<FenceBlock> fence() {
+            return fence;
+        }
+
+        public Block baseBlock() {
+            return baseBlock;
+        }
+
+        public Item getBaseItem() {
+            return baseBlock.asItem();
         }
     }
 
@@ -264,88 +311,105 @@ public class MotrBlocks {
     );
 
     public static final WallInfo WHITE_CONCRETE_WALL = registerWallBlock("white_concrete_wall", Blocks.WHITE_CONCRETE);
-    public static final WallInfo ORANGE_CONCRETE_WALL = registerWallBlock("orange_concrete_wall", Blocks.ORANGE_CONCRETE);
-    public static final WallInfo MAGENTA_CONCRETE_WALL = registerWallBlock("magenta_concrete_wall", Blocks.MAGENTA_CONCRETE);
-    public static final WallInfo LIGHT_BLUE_CONCRETE_WALL = registerWallBlock("light_blue_concrete_wall", Blocks.LIGHT_BLUE_CONCRETE);
-    public static final WallInfo YELLOW_CONCRETE_WALL = registerWallBlock("yellow_concrete_wall", Blocks.YELLOW_CONCRETE);
+    public static final WallInfo ORANGE_CONCRETE_WALL = registerWallBlock("orange_concrete_wall",
+            Blocks.ORANGE_CONCRETE);
+    public static final WallInfo MAGENTA_CONCRETE_WALL = registerWallBlock("magenta_concrete_wall",
+            Blocks.MAGENTA_CONCRETE);
+    public static final WallInfo LIGHT_BLUE_CONCRETE_WALL = registerWallBlock("light_blue_concrete_wall",
+            Blocks.LIGHT_BLUE_CONCRETE);
+    public static final WallInfo YELLOW_CONCRETE_WALL = registerWallBlock("yellow_concrete_wall",
+            Blocks.YELLOW_CONCRETE);
     public static final WallInfo LIME_CONCRETE_WALL = registerWallBlock("lime_concrete_wall", Blocks.LIME_CONCRETE);
     public static final WallInfo PINK_CONCRETE_WALL = registerWallBlock("pink_concrete_wall", Blocks.PINK_CONCRETE);
     public static final WallInfo GRAY_CONCRETE_WALL = registerWallBlock("gray_concrete_wall", Blocks.GRAY_CONCRETE);
-    public static final WallInfo LIGHT_GRAY_CONCRETE_WALL = registerWallBlock("light_gray_concrete_wall", Blocks.LIGHT_GRAY_CONCRETE);
+    public static final WallInfo LIGHT_GRAY_CONCRETE_WALL = registerWallBlock("light_gray_concrete_wall",
+            Blocks.LIGHT_GRAY_CONCRETE);
     public static final WallInfo CYAN_CONCRETE_WALL = registerWallBlock("cyan_concrete_wall", Blocks.CYAN_CONCRETE);
-    public static final WallInfo PURPLE_CONCRETE_WALL = registerWallBlock("purple_concrete_wall", Blocks.PURPLE_CONCRETE);
+    public static final WallInfo PURPLE_CONCRETE_WALL = registerWallBlock("purple_concrete_wall",
+            Blocks.PURPLE_CONCRETE);
     public static final WallInfo BLUE_CONCRETE_WALL = registerWallBlock("blue_concrete_wall", Blocks.BLUE_CONCRETE);
     public static final WallInfo BROWN_CONCRETE_WALL = registerWallBlock("brown_concrete_wall", Blocks.BROWN_CONCRETE);
     public static final WallInfo GREEN_CONCRETE_WALL = registerWallBlock("green_concrete_wall", Blocks.GREEN_CONCRETE);
     public static final WallInfo RED_CONCRETE_WALL = registerWallBlock("red_concrete_wall", Blocks.RED_CONCRETE);
     public static final WallInfo BLACK_CONCRETE_WALL = registerWallBlock("black_concrete_wall", Blocks.BLACK_CONCRETE);
-    public static final WallInfo GILDED_BLACKSTONE_WALL = registerWallBlock("gilded_blackstone", Blocks.GILDED_BLACKSTONE);
+    public static final WallInfo GILDED_BLACKSTONE_WALL = registerWallBlock("gilded_blackstone",
+            Blocks.GILDED_BLACKSTONE);
     public static final WallInfo GOLD_BLOCK_WALL = registerWallBlock("gold_block_wall", Blocks.GOLD_BLOCK);
     public static final WallInfo RAW_GOLD_BLOCK_WALL = registerWallBlock("raw_gold_block_wall", Blocks.RAW_GOLD_BLOCK);
     public static final WallInfo IRON_BLOCK_WALL = registerWallBlock("iron_block_wall", Blocks.IRON_BLOCK);
     public static final WallInfo RAW_IRON_BLOCK_WALL = registerWallBlock("raw_iron_block_wall", Blocks.RAW_IRON_BLOCK);
-    public static final WallInfo BRAIN_CORAL_BLOCK_WALL = registerWallBlock("brain_coral_block_wall", Blocks.BRAIN_CORAL_BLOCK);
-    public static final WallInfo BUBBLE_CORAL_BLOCK_WALL = registerWallBlock("bubble_coral_block_wall", Blocks.BUBBLE_CORAL_BLOCK);
-    public static final WallInfo DEAD_FIRE_CORAL_BLOCK_WALL = registerWallBlock("dead_fire_coral_block_wall", Blocks.DEAD_FIRE_CORAL_BLOCK);
-    public static final WallInfo DEAD_TUBE_CORAL_BLOCK_WALL = registerWallBlock("dead_tube_coral_block_wall", Blocks.DEAD_TUBE_CORAL_BLOCK);
-    public static final WallInfo FIRE_CORAL_BLOCK_WALL = registerWallBlock("fire_coral_block_wall", Blocks.FIRE_CORAL_BLOCK);
-    public static final WallInfo HORN_CORAL_BLOCK_WALL = registerWallBlock("horn_coral_block_wall", Blocks.HORN_CORAL_BLOCK);
-    public static final WallInfo TUBE_CORAL_BLOCK_WALL = registerWallBlock("tube_coral_block_wall", Blocks.TUBE_CORAL_BLOCK);
-
+    public static final WallInfo BRAIN_CORAL_BLOCK_WALL = registerWallBlock("brain_coral_block_wall",
+            Blocks.BRAIN_CORAL_BLOCK);
+    public static final WallInfo BUBBLE_CORAL_BLOCK_WALL = registerWallBlock("bubble_coral_block_wall",
+            Blocks.BUBBLE_CORAL_BLOCK);
+    public static final WallInfo DEAD_FIRE_CORAL_BLOCK_WALL = registerWallBlock("dead_fire_coral_block_wall",
+            Blocks.DEAD_FIRE_CORAL_BLOCK);
+    public static final WallInfo DEAD_TUBE_CORAL_BLOCK_WALL = registerWallBlock("dead_tube_coral_block_wall",
+            Blocks.DEAD_TUBE_CORAL_BLOCK);
+    public static final WallInfo FIRE_CORAL_BLOCK_WALL = registerWallBlock("fire_coral_block_wall",
+            Blocks.FIRE_CORAL_BLOCK);
+    public static final WallInfo HORN_CORAL_BLOCK_WALL = registerWallBlock("horn_coral_block_wall",
+            Blocks.HORN_CORAL_BLOCK);
+    public static final WallInfo TUBE_CORAL_BLOCK_WALL = registerWallBlock("tube_coral_block_wall",
+            Blocks.TUBE_CORAL_BLOCK);
 
     public static final Map<String, WallInfo> REGISTERED_STANDARD_WALLS = Map.ofEntries(
-            Map.entry("white_concrete", WHITE_CONCRETE_WALL),
-            Map.entry("orange_concrete", ORANGE_CONCRETE_WALL),
+            Map.entry("white_concrete", WHITE_CONCRETE_WALL), Map.entry("orange_concrete", ORANGE_CONCRETE_WALL),
             Map.entry("magenta_concrete", MAGENTA_CONCRETE_WALL),
             Map.entry("light_blue_concrete", LIGHT_BLUE_CONCRETE_WALL),
-            Map.entry("yellow_concrete", YELLOW_CONCRETE_WALL),
-            Map.entry("lime_concrete", LIME_CONCRETE_WALL),
-            Map.entry("pink_concrete", PINK_CONCRETE_WALL),
-            Map.entry("gray_concrete", GRAY_CONCRETE_WALL),
-            Map.entry("light_gray_concrete", LIGHT_GRAY_CONCRETE_WALL),
-            Map.entry("cyan_concrete", CYAN_CONCRETE_WALL),
-            Map.entry("purple_concrete", PURPLE_CONCRETE_WALL),
-            Map.entry("blue_concrete", BLUE_CONCRETE_WALL),
-            Map.entry("brown_concrete", BROWN_CONCRETE_WALL),
-            Map.entry("green_concrete", GREEN_CONCRETE_WALL),
-            Map.entry("red_concrete", RED_CONCRETE_WALL),
-            Map.entry("black_concrete", BLACK_CONCRETE_WALL),
-            Map.entry("gilded_blackstone", GILDED_BLACKSTONE_WALL),
-            Map.entry("gold_block", GOLD_BLOCK_WALL),
-            Map.entry("raw_gold_block", RAW_GOLD_BLOCK_WALL),
-            Map.entry("iron_block", IRON_BLOCK_WALL),
-            Map.entry("raw_iron_block", RAW_IRON_BLOCK_WALL),
-            Map.entry("brain_coral_block", BRAIN_CORAL_BLOCK_WALL),
+            Map.entry("yellow_concrete", YELLOW_CONCRETE_WALL), Map.entry("lime_concrete", LIME_CONCRETE_WALL),
+            Map.entry("pink_concrete", PINK_CONCRETE_WALL), Map.entry("gray_concrete", GRAY_CONCRETE_WALL),
+            Map.entry("light_gray_concrete", LIGHT_GRAY_CONCRETE_WALL), Map.entry("cyan_concrete", CYAN_CONCRETE_WALL),
+            Map.entry("purple_concrete", PURPLE_CONCRETE_WALL), Map.entry("blue_concrete", BLUE_CONCRETE_WALL),
+            Map.entry("brown_concrete", BROWN_CONCRETE_WALL), Map.entry("green_concrete", GREEN_CONCRETE_WALL),
+            Map.entry("red_concrete", RED_CONCRETE_WALL), Map.entry("black_concrete", BLACK_CONCRETE_WALL),
+            Map.entry("gilded_blackstone", GILDED_BLACKSTONE_WALL), Map.entry("gold_block", GOLD_BLOCK_WALL),
+            Map.entry("raw_gold_block", RAW_GOLD_BLOCK_WALL), Map.entry("iron_block", IRON_BLOCK_WALL),
+            Map.entry("raw_iron_block", RAW_IRON_BLOCK_WALL), Map.entry("brain_coral_block", BRAIN_CORAL_BLOCK_WALL),
             Map.entry("bubble_coral_block", BUBBLE_CORAL_BLOCK_WALL),
             Map.entry("dead_fire_coral_block", DEAD_FIRE_CORAL_BLOCK_WALL),
             Map.entry("dead_tube_coral_block", DEAD_TUBE_CORAL_BLOCK_WALL),
-            Map.entry("fire_coral_block", FIRE_CORAL_BLOCK_WALL),
-            Map.entry("horn_coral_block", HORN_CORAL_BLOCK_WALL),
+            Map.entry("fire_coral_block", FIRE_CORAL_BLOCK_WALL), Map.entry("horn_coral_block", HORN_CORAL_BLOCK_WALL),
             Map.entry("tube_coral_block", TUBE_CORAL_BLOCK_WALL)
-            );
+    );
 
     public static final WallInfo GLASS_WALL = registerWallBlock("glass_wall", Blocks.GLASS);
     public static final WallInfo TINTED_GLASS_WALL = registerWallBlock("tinted_glass_wall", Blocks.TINTED_GLASS);
-    public static final WallInfo WHITE_STAINED_GLASS_WALL = registerWallBlock("white_stained_glass_wall", Blocks.WHITE_STAINED_GLASS);
-    public static final WallInfo ORANGE_STAINED_GLASS_WALL = registerWallBlock("orange_stained_glass_wall", Blocks.ORANGE_STAINED_GLASS);
-    public static final WallInfo MAGENTA_STAINED_GLASS_WALL = registerWallBlock("magenta_stained_glass_wall", Blocks.MAGENTA_STAINED_GLASS);
-    public static final WallInfo LIGHT_BLUE_STAINED_GLASS_WALL = registerWallBlock("light_blue_stained_glass_wall", Blocks.LIGHT_BLUE_STAINED_GLASS);
-    public static final WallInfo YELLOW_STAINED_GLASS_WALL = registerWallBlock("yellow_stained_glass_wall", Blocks.YELLOW_STAINED_GLASS);
-    public static final WallInfo LIME_STAINED_GLASS_WALL = registerWallBlock("lime_stained_glass_wall", Blocks.LIME_STAINED_GLASS);
-    public static final WallInfo PINK_STAINED_GLASS_WALL = registerWallBlock("pink_stained_glass_wall", Blocks.PINK_STAINED_GLASS);
-    public static final WallInfo GRAY_STAINED_GLASS_WALL = registerWallBlock("gray_stained_glass_wall", Blocks.GRAY_STAINED_GLASS);
-    public static final WallInfo LIGHT_GRAY_STAINED_GLASS_WALL = registerWallBlock("light_gray_stained_glass_wall", Blocks.LIGHT_GRAY_STAINED_GLASS);
-    public static final WallInfo CYAN_STAINED_GLASS_WALL = registerWallBlock("cyan_stained_glass_wall", Blocks.CYAN_STAINED_GLASS);
-    public static final WallInfo PURPLE_STAINED_GLASS_WALL = registerWallBlock("purple_stained_glass_wall", Blocks.PURPLE_STAINED_GLASS);
-    public static final WallInfo BLUE_STAINED_GLASS_WALL = registerWallBlock("blue_stained_glass_wall", Blocks.BLUE_STAINED_GLASS);
-    public static final WallInfo BROWN_STAINED_GLASS_WALL = registerWallBlock("brown_stained_glass_wall", Blocks.BROWN_STAINED_GLASS);
-    public static final WallInfo GREEN_STAINED_GLASS_WALL = registerWallBlock("green_stained_glass_wall", Blocks.GREEN_STAINED_GLASS);
-    public static final WallInfo RED_STAINED_GLASS_WALL = registerWallBlock("red_stained_glass_wall", Blocks.RED_STAINED_GLASS);
-    public static final WallInfo BLACK_STAINED_GLASS_WALL = registerWallBlock("black_stained_glass_wall", Blocks.BLACK_STAINED_GLASS);
+    public static final WallInfo WHITE_STAINED_GLASS_WALL = registerWallBlock("white_stained_glass_wall",
+            Blocks.WHITE_STAINED_GLASS);
+    public static final WallInfo ORANGE_STAINED_GLASS_WALL = registerWallBlock("orange_stained_glass_wall",
+            Blocks.ORANGE_STAINED_GLASS);
+    public static final WallInfo MAGENTA_STAINED_GLASS_WALL = registerWallBlock("magenta_stained_glass_wall",
+            Blocks.MAGENTA_STAINED_GLASS);
+    public static final WallInfo LIGHT_BLUE_STAINED_GLASS_WALL = registerWallBlock("light_blue_stained_glass_wall",
+            Blocks.LIGHT_BLUE_STAINED_GLASS);
+    public static final WallInfo YELLOW_STAINED_GLASS_WALL = registerWallBlock("yellow_stained_glass_wall",
+            Blocks.YELLOW_STAINED_GLASS);
+    public static final WallInfo LIME_STAINED_GLASS_WALL = registerWallBlock("lime_stained_glass_wall",
+            Blocks.LIME_STAINED_GLASS);
+    public static final WallInfo PINK_STAINED_GLASS_WALL = registerWallBlock("pink_stained_glass_wall",
+            Blocks.PINK_STAINED_GLASS);
+    public static final WallInfo GRAY_STAINED_GLASS_WALL = registerWallBlock("gray_stained_glass_wall",
+            Blocks.GRAY_STAINED_GLASS);
+    public static final WallInfo LIGHT_GRAY_STAINED_GLASS_WALL = registerWallBlock("light_gray_stained_glass_wall",
+            Blocks.LIGHT_GRAY_STAINED_GLASS);
+    public static final WallInfo CYAN_STAINED_GLASS_WALL = registerWallBlock("cyan_stained_glass_wall",
+            Blocks.CYAN_STAINED_GLASS);
+    public static final WallInfo PURPLE_STAINED_GLASS_WALL = registerWallBlock("purple_stained_glass_wall",
+            Blocks.PURPLE_STAINED_GLASS);
+    public static final WallInfo BLUE_STAINED_GLASS_WALL = registerWallBlock("blue_stained_glass_wall",
+            Blocks.BLUE_STAINED_GLASS);
+    public static final WallInfo BROWN_STAINED_GLASS_WALL = registerWallBlock("brown_stained_glass_wall",
+            Blocks.BROWN_STAINED_GLASS);
+    public static final WallInfo GREEN_STAINED_GLASS_WALL = registerWallBlock("green_stained_glass_wall",
+            Blocks.GREEN_STAINED_GLASS);
+    public static final WallInfo RED_STAINED_GLASS_WALL = registerWallBlock("red_stained_glass_wall",
+            Blocks.RED_STAINED_GLASS);
+    public static final WallInfo BLACK_STAINED_GLASS_WALL = registerWallBlock("black_stained_glass_wall",
+            Blocks.BLACK_STAINED_GLASS);
 
     public static final Map<String, WallInfo> REGISTERED_GLASS_WALLS = Map.ofEntries(
-            Map.entry("glass", GLASS_WALL),
-            Map.entry("tinted_glass", TINTED_GLASS_WALL),
+            Map.entry("glass", GLASS_WALL), Map.entry("tinted_glass", TINTED_GLASS_WALL),
             Map.entry("white_stained_glass", WHITE_STAINED_GLASS_WALL),
             Map.entry("orange_stained_glass", ORANGE_STAINED_GLASS_WALL),
             Map.entry("magenta_stained_glass", MAGENTA_STAINED_GLASS_WALL),
@@ -364,6 +428,109 @@ public class MotrBlocks {
             Map.entry("black_stained_glass", BLACK_STAINED_GLASS_WALL)
     );
 
+    public static final ButtonInfo WHITE_CONCRETE_BUTTON = new ButtonInfo(
+            registerButtonBlock("white_concrete_button", Blocks.WHITE_CONCRETE), Blocks.WHITE_CONCRETE);
+    public static final ButtonInfo BLACK_CONCRETE_BUTTON = new ButtonInfo(
+            registerButtonBlock("black_concrete_button", Blocks.BLACK_CONCRETE), Blocks.BLACK_CONCRETE);
+    public static final ButtonInfo PINK_CONCRETE_BUTTON = new ButtonInfo(
+            registerButtonBlock("pink_concrete_button", Blocks.PINK_CONCRETE), Blocks.PINK_CONCRETE);
+    public static final ButtonInfo LIGHT_BLUE_CONCRETE_BUTTON = new ButtonInfo(
+            registerButtonBlock("light_blue_concrete_button", Blocks.LIGHT_BLUE_CONCRETE), Blocks.LIGHT_BLUE_CONCRETE);
+    public static final ButtonInfo RED_CONCRETE_BUTTON = new ButtonInfo(
+            registerButtonBlock("red_concrete_button", Blocks.RED_CONCRETE), Blocks.RED_CONCRETE);
+    public static final ButtonInfo WHITE_TERRACOTTA_BUTTON = new ButtonInfo(
+            registerButtonBlock("white_terracotta_button", Blocks.WHITE_TERRACOTTA), Blocks.WHITE_TERRACOTTA);
+    public static final ButtonInfo BLACK_TERRACOTTA_BUTTON = new ButtonInfo(
+            registerButtonBlock("black_terracotta_button", Blocks.BLACK_TERRACOTTA), Blocks.BLACK_TERRACOTTA);
+    public static final ButtonInfo PINK_TERRACOTTA_BUTTON = new ButtonInfo(
+            registerButtonBlock("pink_terracotta_button", Blocks.PINK_TERRACOTTA), Blocks.PINK_TERRACOTTA);
+    public static final ButtonInfo LIGHT_BLUE_TERRACOTTA_BUTTON = new ButtonInfo(
+            registerButtonBlock("light_blue_terracotta_button", Blocks.LIGHT_BLUE_TERRACOTTA),
+            Blocks.LIGHT_BLUE_TERRACOTTA);
+    public static final ButtonInfo RED_TERRACOTTA_BUTTON = new ButtonInfo(
+            registerButtonBlock("red_terracotta_button", Blocks.RED_TERRACOTTA), Blocks.RED_TERRACOTTA);
+    public static final ButtonInfo WHITE_WOOL_BUTTON = new ButtonInfo(
+            registerButtonBlock("white_wool_button", Blocks.WHITE_WOOL), Blocks.WHITE_WOOL);
+    public static final ButtonInfo BLACK_WOOL_BUTTON = new ButtonInfo(
+            registerButtonBlock("black_wool_button", Blocks.BLACK_WOOL), Blocks.BLACK_WOOL);
+    public static final ButtonInfo PINK_WOOL_BUTTON = new ButtonInfo(
+            registerButtonBlock("pink_wool_button", Blocks.PINK_WOOL), Blocks.PINK_WOOL);
+    public static final ButtonInfo LIGHT_BLUE_WOOL_BUTTON = new ButtonInfo(
+            registerButtonBlock("light_blue_wool_button", Blocks.LIGHT_BLUE_WOOL), Blocks.LIGHT_BLUE_WOOL);
+    public static final ButtonInfo RED_WOOL_BUTTON = new ButtonInfo(
+            registerButtonBlock("red_wool_button", Blocks.RED_WOOL), Blocks.RED_WOOL);
+    public static final ButtonInfo SANDSTONE_BUTTON = new ButtonInfo(
+            registerButtonBlock("sandstone_button", Blocks.SANDSTONE), Blocks.SANDSTONE);
+    public static final ButtonInfo RED_SANDSTONE_BUTTON = new ButtonInfo(
+            registerButtonBlock("red_sandstone_button", Blocks.RED_SANDSTONE), Blocks.RED_SANDSTONE);
+    public static final ButtonInfo MUD_BUTTON = new ButtonInfo(registerButtonBlock("mud_button", Blocks.MUD),
+            Blocks.MUD);
+
+    public static final FenceInfo WHITE_CONCRETE_FENCE = new FenceInfo(
+            registerFenceBlock("white_concrete_fence", Blocks.WHITE_CONCRETE), Blocks.WHITE_CONCRETE);
+    public static final FenceInfo BLACK_CONCRETE_FENCE = new FenceInfo(
+            registerFenceBlock("black_concrete_fence", Blocks.BLACK_CONCRETE), Blocks.BLACK_CONCRETE);
+    public static final FenceInfo PINK_CONCRETE_FENCE = new FenceInfo(
+            registerFenceBlock("pink_concrete_fence", Blocks.PINK_CONCRETE), Blocks.PINK_CONCRETE);
+    public static final FenceInfo LIGHT_BLUE_CONCRETE_FENCE = new FenceInfo(
+            registerFenceBlock("light_blue_concrete_fence", Blocks.LIGHT_BLUE_CONCRETE), Blocks.LIGHT_BLUE_CONCRETE);
+    public static final FenceInfo RED_CONCRETE_FENCE = new FenceInfo(
+            registerFenceBlock("red_concrete_fence", Blocks.RED_CONCRETE), Blocks.RED_CONCRETE);
+    public static final FenceInfo WHITE_TERRACOTTA_FENCE = new FenceInfo(
+            registerFenceBlock("white_terracotta_fence", Blocks.WHITE_TERRACOTTA), Blocks.WHITE_TERRACOTTA);
+    public static final FenceInfo BLACK_TERRACOTTA_FENCE = new FenceInfo(
+            registerFenceBlock("black_terracotta_fence", Blocks.BLACK_TERRACOTTA), Blocks.BLACK_TERRACOTTA);
+    public static final FenceInfo PINK_TERRACOTTA_FENCE = new FenceInfo(
+            registerFenceBlock("pink_terracotta_fence", Blocks.PINK_TERRACOTTA), Blocks.PINK_TERRACOTTA);
+    public static final FenceInfo LIGHT_BLUE_TERRACOTTA_FENCE = new FenceInfo(
+            registerFenceBlock("light_blue_terracotta_fence", Blocks.LIGHT_BLUE_TERRACOTTA),
+            Blocks.LIGHT_BLUE_TERRACOTTA);
+    public static final FenceInfo RED_TERRACOTTA_FENCE = new FenceInfo(
+            registerFenceBlock("red_terracotta_fence", Blocks.RED_TERRACOTTA), Blocks.RED_TERRACOTTA);
+    public static final FenceInfo WHITE_WOOL_FENCE = new FenceInfo(
+            registerFenceBlock("white_wool_fence", Blocks.WHITE_WOOL), Blocks.WHITE_WOOL);
+    public static final FenceInfo BLACK_WOOL_FENCE = new FenceInfo(
+            registerFenceBlock("black_wool_fence", Blocks.BLACK_WOOL), Blocks.BLACK_WOOL);
+    public static final FenceInfo PINK_WOOL_FENCE = new FenceInfo(
+            registerFenceBlock("pink_wool_fence", Blocks.PINK_WOOL), Blocks.PINK_WOOL);
+    public static final FenceInfo LIGHT_BLUE_WOOL_FENCE = new FenceInfo(
+            registerFenceBlock("light_blue_wool_fence", Blocks.LIGHT_BLUE_WOOL), Blocks.LIGHT_BLUE_WOOL);
+    public static final FenceInfo RED_WOOL_FENCE = new FenceInfo(registerFenceBlock("red_wool_fence", Blocks.RED_WOOL),
+            Blocks.RED_WOOL);
+    public static final FenceInfo SANDSTONE_FENCE = new FenceInfo(
+            registerFenceBlock("sandstone_fence", Blocks.SANDSTONE), Blocks.SANDSTONE);
+    public static final FenceInfo RED_SANDSTONE_FENCE = new FenceInfo(
+            registerFenceBlock("red_sandstone_fence", Blocks.RED_SANDSTONE), Blocks.RED_SANDSTONE);
+    public static final FenceInfo MUD_FENCE = new FenceInfo(registerFenceBlock("mud_fence", Blocks.MUD), Blocks.MUD);
+
+    public static final Map<String, ButtonInfo> REGISTERED_BUTTONS = Map.ofEntries(
+            Map.entry("white_concrete", WHITE_CONCRETE_BUTTON), Map.entry("black_concrete", BLACK_CONCRETE_BUTTON),
+            Map.entry("pink_concrete", PINK_CONCRETE_BUTTON),
+            Map.entry("light_blue_concrete", LIGHT_BLUE_CONCRETE_BUTTON),
+            Map.entry("red_concrete", RED_CONCRETE_BUTTON), Map.entry("white_terracotta", WHITE_TERRACOTTA_BUTTON),
+            Map.entry("black_terracotta", BLACK_TERRACOTTA_BUTTON),
+            Map.entry("pink_terracotta", PINK_TERRACOTTA_BUTTON),
+            Map.entry("light_blue_terracotta", LIGHT_BLUE_TERRACOTTA_BUTTON),
+            Map.entry("red_terracotta", RED_TERRACOTTA_BUTTON), Map.entry("white_wool", WHITE_WOOL_BUTTON),
+            Map.entry("black_wool", BLACK_WOOL_BUTTON), Map.entry("pink_wool", PINK_WOOL_BUTTON),
+            Map.entry("light_blue_wool", LIGHT_BLUE_WOOL_BUTTON), Map.entry("red_wool", RED_WOOL_BUTTON),
+            Map.entry("sandstone", SANDSTONE_BUTTON), Map.entry("red_sandstone", RED_SANDSTONE_BUTTON),
+            Map.entry("mud", MUD_BUTTON)
+    );
+
+    public static final Map<String, FenceInfo> REGISTERED_FENCES = Map.ofEntries(
+            Map.entry("white_concrete", WHITE_CONCRETE_FENCE), Map.entry("black_concrete", BLACK_CONCRETE_FENCE),
+            Map.entry("pink_concrete", PINK_CONCRETE_FENCE),
+            Map.entry("light_blue_concrete", LIGHT_BLUE_CONCRETE_FENCE), Map.entry("red_concrete", RED_CONCRETE_FENCE),
+            Map.entry("white_terracotta", WHITE_TERRACOTTA_FENCE),
+            Map.entry("black_terracotta", BLACK_TERRACOTTA_FENCE), Map.entry("pink_terracotta", PINK_TERRACOTTA_FENCE),
+            Map.entry("light_blue_terracotta", LIGHT_BLUE_TERRACOTTA_FENCE),
+            Map.entry("red_terracotta", RED_TERRACOTTA_FENCE), Map.entry("white_wool", WHITE_WOOL_FENCE),
+            Map.entry("black_wool", BLACK_WOOL_FENCE), Map.entry("pink_wool", PINK_WOOL_FENCE),
+            Map.entry("light_blue_wool", LIGHT_BLUE_WOOL_FENCE), Map.entry("red_wool", RED_WOOL_FENCE),
+            Map.entry("sandstone", SANDSTONE_FENCE), Map.entry("red_sandstone", RED_SANDSTONE_FENCE),
+            Map.entry("mud", MUD_FENCE)
+    );
 
     public static final Map<String, SlabInfo> REGISTERED_DIRECTIONAL_SLABS = Map.ofEntries(
             Map.entry("podzol", PODZOL_SLAB), Map.entry("muddy_mangrove_roots", MUDDY_MANGROVE_ROOTS_SLAB),
@@ -394,12 +561,22 @@ public class MotrBlocks {
     }
 
     private static WallInfo registerWallBlock(String id, Block baseBlock) {
-        DeferredBlock<?> wall = registerBlock(id,
-                () -> new net.minecraft.world.level.block.WallBlock(
-                        BlockBehaviour.Properties.ofFullCopy(baseBlock).setId(blockId(id))));
+        DeferredBlock<?> wall = registerBlock(id, () -> new net.minecraft.world.level.block.WallBlock(
+                BlockBehaviour.Properties.ofFullCopy(baseBlock).setId(blockId(id))));
         return new WallInfo(wall, baseBlock);
     }
 
+    private static DeferredBlock<ButtonBlock> registerButtonBlock(String id, Block baseBlock) {
+        return registerBlock(id, () -> new ButtonBlock(
+                BlockSetType.STONE, 30,
+                BlockBehaviour.Properties.ofFullCopy(baseBlock).noCollission().strength(0.5F).setId(blockId(id))
+        ));
+    }
+
+    private static DeferredBlock<FenceBlock> registerFenceBlock(String id, Block baseBlock) {
+        return registerBlock(id, () -> new FenceBlock(
+                BlockBehaviour.Properties.ofFullCopy(baseBlock).strength(2.0F, 3.0F).setId(blockId(id))));
+    }
 
     private static ResourceKey<Block> blockId(String name) {
         return ResourceKey.create(Registries.BLOCK,

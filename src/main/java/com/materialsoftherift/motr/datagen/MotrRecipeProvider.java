@@ -10,6 +10,7 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
@@ -73,6 +74,24 @@ public class MotrRecipeProvider extends RecipeProvider {
                     .pattern("###")
                     .define('#', wallInfo.getBaseItem())
                     .unlockedBy("has_" + id, has(wallInfo.getBaseItem()))
+                    .save(this.output);
+        });
+
+        MotrBlocks.REGISTERED_FENCES.forEach((id, fenceInfo) -> {
+            ShapedRecipeBuilder.shaped(getter, RecipeCategory.BUILDING_BLOCKS, fenceInfo.fence().get(), 3)
+                    .pattern("#S#")
+                    .pattern("#S#")
+                    .define('#', fenceInfo.getBaseItem())
+                    .define('S', Items.STICK)
+                    .unlockedBy("has_" + id, has(fenceInfo.getBaseItem()))
+                    .save(this.output);
+        });
+
+        MotrBlocks.REGISTERED_BUTTONS.forEach((id, buttonInfo) -> {
+            ShapedRecipeBuilder.shaped(getter, RecipeCategory.BUILDING_BLOCKS, buttonInfo.button().get(), 1)
+                    .pattern("#")
+                    .define('#', buttonInfo.getBaseItem())
+                    .unlockedBy("has_" + id, has(buttonInfo.getBaseItem()))
                     .save(this.output);
         });
     }

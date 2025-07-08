@@ -20,15 +20,22 @@ public class MotrBlockLootTableProvider extends BlockLootSubProvider {
 
         MotrBlocks.REGISTERED_STANDARD_SLABS.values().forEach(slabInfo -> dropSelf(slabInfo.slab().get()));
         MotrBlocks.REGISTERED_DIRECTIONAL_SLABS.values().forEach(slabInfo -> dropSelf(slabInfo.slab().get()));
-        MotrBlocks.REGISTERED_GLASS_SLABS.values().forEach(slabInfo -> dropSelf(slabInfo.slab().get()));
         MotrBlocks.REGISTERED_TRIMM_SLABS.values().forEach(slabInfo -> dropSelf(slabInfo.slab().get()));
         MotrBlocks.REGISTERED_STANDARD_WALLS.values().forEach(wallInfo -> dropSelf(wallInfo.wall().get()));
-        MotrBlocks.REGISTERED_GLASS_WALLS.values().forEach(wallInfo -> dropSelf(wallInfo.wall().get()));
+        MotrBlocks.REGISTERED_BUTTONS.values().forEach(buttonInfo -> dropSelf(buttonInfo.button().get()));
+        MotrBlocks.REGISTERED_FENCES.values().forEach(fenceInfo -> dropSelf(fenceInfo.fence().get()));
 
+        MotrBlocks.REGISTERED_GLASS_SLABS.values()
+                .forEach(slabInfo -> add(slabInfo.slab().get(), createSilkTouchOnlyTable(slabInfo.slab().get()))
+                );
+        MotrBlocks.REGISTERED_GLASS_WALLS.values()
+                .forEach(wallInfo -> add(wallInfo.wall().get(), createSilkTouchOnlyTable(wallInfo.wall().get()))
+                );
     }
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
         return MotrBlocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
     }
+
 }
