@@ -46,6 +46,24 @@ public class MotrLanguageProvider extends LanguageProvider {
         addBlock(MotrBlocks.RED_STAINED_GLASS_WALL.wall(), "Red Stained Glass Wall");
         addBlock(MotrBlocks.BLACK_STAINED_GLASS_WALL.wall(), "Black Stained Glass Wall");
 
+//Concrete walls
+        addBlock(MotrBlocks.WHITE_CONCRETE_WALL.wall(), "White Concrete Wall");
+        addBlock(MotrBlocks.ORANGE_CONCRETE_WALL.wall(), "Orange Concrete Wall");
+        addBlock(MotrBlocks.MAGENTA_CONCRETE_WALL.wall(), "Magenta Concrete Wall");
+        addBlock(MotrBlocks.LIGHT_BLUE_CONCRETE_WALL.wall(), "Light Blue Concrete Wall");
+        addBlock(MotrBlocks.YELLOW_CONCRETE_WALL.wall(), "Yellow Concrete Wall");
+        addBlock(MotrBlocks.LIME_CONCRETE_WALL.wall(), "Lime Concrete Wall");
+        addBlock(MotrBlocks.PINK_CONCRETE_WALL.wall(), "Pink Concrete Wall");
+        addBlock(MotrBlocks.GRAY_CONCRETE_WALL.wall(), "Gray Concrete Wall");
+        addBlock(MotrBlocks.LIGHT_GRAY_CONCRETE_WALL.wall(), "Light Gray Concrete Wall");
+        addBlock(MotrBlocks.CYAN_CONCRETE_WALL.wall(), "Cyan Concrete Wall");
+        addBlock(MotrBlocks.PURPLE_CONCRETE_WALL.wall(), "Purple Concrete Wall");
+        addBlock(MotrBlocks.BLUE_CONCRETE_WALL.wall(), "Blue Concrete Wall");
+        addBlock(MotrBlocks.BROWN_CONCRETE_WALL.wall(), "Brown Concrete Wall");
+        addBlock(MotrBlocks.GREEN_CONCRETE_WALL.wall(), "Green Concrete Wall");
+        addBlock(MotrBlocks.RED_CONCRETE_WALL.wall(), "Red Concrete Wall");
+        addBlock(MotrBlocks.BLACK_CONCRETE_WALL.wall(), "Black Concrete Wall");
+
 // Extra walls
         addBlock(MotrBlocks.GOLD_BLOCK_WALL.wall(), "Gold Block Wall");
         addBlock(MotrBlocks.RAW_GOLD_BLOCK_WALL.wall(), "Raw Gold Block Wall");
@@ -58,7 +76,6 @@ public class MotrLanguageProvider extends LanguageProvider {
         addBlock(MotrBlocks.FIRE_CORAL_BLOCK_WALL.wall(), "Fire Coral Block Wall");
         addBlock(MotrBlocks.HORN_CORAL_BLOCK_WALL.wall(), "Horn Coral Block Wall");
         addBlock(MotrBlocks.TUBE_CORAL_BLOCK_WALL.wall(), "Tube Coral Block Wall");
-
 
 // Concrete slabs
         addBlock(MotrBlocks.WHITE_CONCRETE_SLAB.slab(), "White Concrete Slab");
@@ -154,6 +171,49 @@ public class MotrLanguageProvider extends LanguageProvider {
         addBlock(MotrBlocks.GOLD_BLOCK_SLAB.slab(), "Gold Block Slab");
         addBlock(MotrBlocks.IRON_BLOCK_SLAB.slab(), "Iron Block Slab");
 
+        addBlock(MotrBlocks.WHITE_CONCRETE_BUTTON.button(), "White Concrete Button");
+        addBlock(MotrBlocks.BLACK_CONCRETE_BUTTON.button(), "Black Concrete Button");
+        addBlock(MotrBlocks.PINK_CONCRETE_BUTTON.button(), "Pink Concrete Button");
+        addBlock(MotrBlocks.LIGHT_BLUE_CONCRETE_BUTTON.button(), "Light Blue Concrete Button");
+        addBlock(MotrBlocks.RED_CONCRETE_BUTTON.button(), "Red Concrete Button");
+
+        addBlock(MotrBlocks.WHITE_TERRACOTTA_BUTTON.button(), "White Terracotta Button");
+        addBlock(MotrBlocks.BLACK_TERRACOTTA_BUTTON.button(), "Black Terracotta Button");
+        addBlock(MotrBlocks.PINK_TERRACOTTA_BUTTON.button(), "Pink Terracotta Button");
+        addBlock(MotrBlocks.LIGHT_BLUE_TERRACOTTA_BUTTON.button(), "Light Blue Terracotta Button");
+        addBlock(MotrBlocks.RED_TERRACOTTA_BUTTON.button(), "Red Terracotta Button");
+
+        addBlock(MotrBlocks.WHITE_WOOL_BUTTON.button(), "White Wool Button");
+        addBlock(MotrBlocks.BLACK_WOOL_BUTTON.button(), "Black Wool Button");
+        addBlock(MotrBlocks.PINK_WOOL_BUTTON.button(), "Pink Wool Button");
+        addBlock(MotrBlocks.LIGHT_BLUE_WOOL_BUTTON.button(), "Light Blue Wool Button");
+        addBlock(MotrBlocks.RED_WOOL_BUTTON.button(), "Red Wool Button");
+
+        addBlock(MotrBlocks.SANDSTONE_BUTTON.button(), "Sandstone Button");
+        addBlock(MotrBlocks.RED_SANDSTONE_BUTTON.button(), "Red Sandstone Button");
+        addBlock(MotrBlocks.MUD_BUTTON.button(), "Mud Button");
+
+        addBlock(MotrBlocks.WHITE_CONCRETE_FENCE.fence(), "White Concrete Fence");
+        addBlock(MotrBlocks.BLACK_CONCRETE_FENCE.fence(), "Black Concrete Fence");
+        addBlock(MotrBlocks.PINK_CONCRETE_FENCE.fence(), "Pink Concrete Fence");
+        addBlock(MotrBlocks.LIGHT_BLUE_CONCRETE_FENCE.fence(), "Light Blue Concrete Fence");
+        addBlock(MotrBlocks.RED_CONCRETE_FENCE.fence(), "Red Concrete Fence");
+
+        addBlock(MotrBlocks.WHITE_TERRACOTTA_FENCE.fence(), "White Terracotta Fence");
+        addBlock(MotrBlocks.BLACK_TERRACOTTA_FENCE.fence(), "Black Terracotta Fence");
+        addBlock(MotrBlocks.PINK_TERRACOTTA_FENCE.fence(), "Pink Terracotta Fence");
+        addBlock(MotrBlocks.LIGHT_BLUE_TERRACOTTA_FENCE.fence(), "Light Blue Terracotta Fence");
+        addBlock(MotrBlocks.RED_TERRACOTTA_FENCE.fence(), "Red Terracotta Fence");
+
+        addBlock(MotrBlocks.WHITE_WOOL_FENCE.fence(), "White Wool Fence");
+        addBlock(MotrBlocks.BLACK_WOOL_FENCE.fence(), "Black Wool Fence");
+        addBlock(MotrBlocks.PINK_WOOL_FENCE.fence(), "Pink Wool Fence");
+        addBlock(MotrBlocks.LIGHT_BLUE_WOOL_FENCE.fence(), "Light Blue Wool Fence");
+        addBlock(MotrBlocks.RED_WOOL_FENCE.fence(), "Red Wool Fence");
+
+        addBlock(MotrBlocks.SANDSTONE_FENCE.fence(), "Sandstone Fence");
+        addBlock(MotrBlocks.RED_SANDSTONE_FENCE.fence(), "Red Sandstone Fence");
+        addBlock(MotrBlocks.MUD_FENCE.fence(), "Mud Fence");
 
         add("itemGroup." + MaterialsOfTheRift.MODID, "MOTR");
 
