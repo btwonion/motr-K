@@ -237,6 +237,44 @@ public class MotrLanguageProvider extends LanguageProvider {
         addBlock(MotrBlocks.RED_SANDSTONE_FENCE.fence(), "Red Sandstone Fence");
         addBlock(MotrBlocks.MUD_FENCE.fence(), "Mud Fence");
 
+        addBlock(MotrBlocks.WHITE_CONCRETE_FENCE_GATE.fenceGate(), "White Concrete Fence Gate");
+        addBlock(MotrBlocks.LIGHT_GRAY_CONCRETE_FENCE_GATE.fenceGate(), "Light Gray Concrete Fence Gate");
+        addBlock(MotrBlocks.GRAY_CONCRETE_FENCE_GATE.fenceGate(), "Gray Concrete Fence Gate");
+        addBlock(MotrBlocks.BLACK_CONCRETE_FENCE_GATE.fenceGate(), "Black Concrete Fence Gate");
+        addBlock(MotrBlocks.BROWN_CONCRETE_FENCE_GATE.fenceGate(), "Brown Concrete Fence Gate");
+        addBlock(MotrBlocks.RED_CONCRETE_FENCE_GATE.fenceGate(), "Red Concrete Fence Gate");
+        addBlock(MotrBlocks.ORANGE_CONCRETE_FENCE_GATE.fenceGate(), "Orange Concrete Fence Gate");
+        addBlock(MotrBlocks.YELLOW_CONCRETE_FENCE_GATE.fenceGate(), "Yellow Concrete Fence Gate");
+        addBlock(MotrBlocks.LIME_CONCRETE_FENCE_GATE.fenceGate(), "Lime Concrete Fence Gate");
+        addBlock(MotrBlocks.GREEN_CONCRETE_FENCE_GATE.fenceGate(), "Green Concrete Fence Gate");
+        addBlock(MotrBlocks.CYAN_CONCRETE_FENCE_GATE.fenceGate(), "Cyan Concrete Fence Gate");
+        addBlock(MotrBlocks.LIGHT_BLUE_CONCRETE_FENCE_GATE.fenceGate(), "Light Blue Concrete Fence Gate");
+        addBlock(MotrBlocks.BLUE_CONCRETE_FENCE_GATE.fenceGate(), "Blue Concrete Fence Gate");
+        addBlock(MotrBlocks.PURPLE_CONCRETE_FENCE_GATE.fenceGate(), "Purple Concrete Fence Gate");
+        addBlock(MotrBlocks.MAGENTA_CONCRETE_FENCE_GATE.fenceGate(), "Magenta Concrete Fence Gate");
+        addBlock(MotrBlocks.PINK_CONCRETE_FENCE_GATE.fenceGate(), "Pink Concrete Fence Gate");
+
+        addBlock(MotrBlocks.WHITE_TERRACOTTA_FENCE_GATE.fenceGate(), "White Terracotta Fence Gate");
+        addBlock(MotrBlocks.LIGHT_GRAY_TERRACOTTA_FENCE_GATE.fenceGate(), "Light Gray Terracotta Fence Gate");
+        addBlock(MotrBlocks.GRAY_TERRACOTTA_FENCE_GATE.fenceGate(), "Gray Terracotta Fence Gate");
+        addBlock(MotrBlocks.BLACK_TERRACOTTA_FENCE_GATE.fenceGate(), "Black Terracotta Fence Gate");
+        addBlock(MotrBlocks.BROWN_TERRACOTTA_FENCE_GATE.fenceGate(), "Brown Terracotta Fence Gate");
+        addBlock(MotrBlocks.RED_TERRACOTTA_FENCE_GATE.fenceGate(), "Red Terracotta Fence Gate");
+        addBlock(MotrBlocks.ORANGE_TERRACOTTA_FENCE_GATE.fenceGate(), "Orange Terracotta Fence Gate");
+        addBlock(MotrBlocks.YELLOW_TERRACOTTA_FENCE_GATE.fenceGate(), "Yellow Terracotta Fence Gate");
+        addBlock(MotrBlocks.LIME_TERRACOTTA_FENCE_GATE.fenceGate(), "Lime Terracotta Fence Gate");
+        addBlock(MotrBlocks.GREEN_TERRACOTTA_FENCE_GATE.fenceGate(), "Green Terracotta Fence Gate");
+        addBlock(MotrBlocks.CYAN_TERRACOTTA_FENCE_GATE.fenceGate(), "Cyan Terracotta Fence Gate");
+        addBlock(MotrBlocks.LIGHT_BLUE_TERRACOTTA_FENCE_GATE.fenceGate(), "Light Blue Terracotta Fence Gate");
+        addBlock(MotrBlocks.BLUE_TERRACOTTA_FENCE_GATE.fenceGate(), "Blue Terracotta Fence Gate");
+        addBlock(MotrBlocks.PURPLE_TERRACOTTA_FENCE_GATE.fenceGate(), "Purple Terracotta Fence Gate");
+        addBlock(MotrBlocks.MAGENTA_TERRACOTTA_FENCE_GATE.fenceGate(), "Magenta Terracotta Fence Gate");
+        addBlock(MotrBlocks.PINK_TERRACOTTA_FENCE_GATE.fenceGate(), "Pink Terracotta Fence Gate");
+
+        addBlock(MotrBlocks.SANDSTONE_FENCE_GATE.fenceGate(), "Sandstone Fence Gate");
+        addBlock(MotrBlocks.RED_SANDSTONE_FENCE_GATE.fenceGate(), "Red Sandstone Fence Gate");
+        addBlock(MotrBlocks.MUD_FENCE_GATE.fenceGate(), "Mud Fence Gate");
+
         add("itemGroup." + MaterialsOfTheRift.MODID, "MOTR");
 
     }

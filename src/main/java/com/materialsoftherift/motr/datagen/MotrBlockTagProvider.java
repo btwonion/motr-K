@@ -139,6 +139,9 @@ public class MotrBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.BUTTONS)
                 .add(getAllButtonBlocks());
 
+        tag(BlockTags.FENCE_GATES)
+                .add(getAllFenceGateBlocks());
+
         // spotless:on
 
     }
@@ -170,6 +173,13 @@ public class MotrBlockTagProvider extends BlockTagsProvider {
         return MotrBlocks.REGISTERED_FENCES.values()
                 .stream()
                 .map(fenceInfo -> fenceInfo.fence().get())
+                .toArray(Block[]::new);
+    }
+
+    private Block[] getAllFenceGateBlocks() {
+        return MotrBlocks.REGISTERED_FENCE_GATES.values()
+                .stream()
+                .map(fenceGateInfo -> fenceGateInfo.fenceGate().get())
                 .toArray(Block[]::new);
     }
 

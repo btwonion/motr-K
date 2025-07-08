@@ -94,6 +94,17 @@ public class MotrRecipeProvider extends RecipeProvider {
                     .unlockedBy("has_" + id, has(buttonInfo.getBaseItem()))
                     .save(this.output);
         });
+
+        MotrBlocks.REGISTERED_FENCE_GATES.forEach((id, fenceGateInfo) -> {
+            ShapedRecipeBuilder.shaped(getter, RecipeCategory.BUILDING_BLOCKS, fenceGateInfo.fenceGate().get(), 3)
+                    .pattern("S#S")
+                    .pattern("S#S")
+                    .define('#', fenceGateInfo.getBaseItem())
+                    .define('S', Items.STICK)
+                    .unlockedBy("has_" + id, has(fenceGateInfo.getBaseItem()))
+                    .save(this.output);
+        });
+
     }
 
     // The runner to add to the data generator
