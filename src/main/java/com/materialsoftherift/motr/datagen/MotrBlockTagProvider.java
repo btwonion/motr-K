@@ -127,6 +127,10 @@ public class MotrBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.SLABS)
                 .add(getAllSlabBlocks());
 
+        tag(BlockTags.WALLS)
+                .add(getAllWallBlocks());
+
+
         // spotless:on
 
     }
@@ -139,5 +143,13 @@ public class MotrBlockTagProvider extends BlockTagsProvider {
                 MotrBlocks.REGISTERED_TRIMM_SLABS.values().stream()
         ).flatMap(stream -> stream).map(slabInfo -> slabInfo.slab().get()).toArray(Block[]::new);
     }
+
+    private Block[] getAllWallBlocks() {
+        return Stream.concat(
+                MotrBlocks.REGISTERED_STANDARD_WALLS.values().stream(),
+                MotrBlocks.REGISTERED_GLASS_WALLS.values().stream()
+        ).map(wallInfo -> wallInfo.wall().get()).toArray(Block[]::new);
+    }
+
 
 }

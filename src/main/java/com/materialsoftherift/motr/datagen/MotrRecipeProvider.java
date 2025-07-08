@@ -57,6 +57,24 @@ public class MotrRecipeProvider extends RecipeProvider {
                     .unlockedBy("has_" + id, has(slabInfo.getBaseItem()))
                     .save(this.output);
         });
+
+        MotrBlocks.REGISTERED_STANDARD_WALLS.forEach((id, wallInfo) -> {
+            ShapedRecipeBuilder.shaped(getter, RecipeCategory.BUILDING_BLOCKS, wallInfo.wall().get(), 6)
+                    .pattern("###")
+                    .pattern("###")
+                    .define('#', wallInfo.getBaseItem())
+                    .unlockedBy("has_" + id, has(wallInfo.getBaseItem()))
+                    .save(this.output);
+        });
+
+        MotrBlocks.REGISTERED_GLASS_WALLS.forEach((id, wallInfo) -> {
+            ShapedRecipeBuilder.shaped(getter, RecipeCategory.BUILDING_BLOCKS, wallInfo.wall().get(), 6)
+                    .pattern("###")
+                    .pattern("###")
+                    .define('#', wallInfo.getBaseItem())
+                    .unlockedBy("has_" + id, has(wallInfo.getBaseItem()))
+                    .save(this.output);
+        });
     }
 
     // The runner to add to the data generator
