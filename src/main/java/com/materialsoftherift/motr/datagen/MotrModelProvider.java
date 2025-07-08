@@ -84,19 +84,25 @@ public class MotrModelProvider extends ModelProvider {
         });
 
         MotrBlocks.REGISTERED_GLASS_WALLS.forEach((textureName, wallInfo) -> {
-            registerGlassWallModel(blockModels, wallInfo.wall().get(), textureName);
+            Block wall = wallInfo.wall().get();
 
-            ResourceLocation itemModel = ModelTemplates.WALL_INVENTORY.create(
-                    wallInfo.wall().get(),
-                    new TextureMapping().put(TextureSlot.WALL,
-                            ResourceLocation.withDefaultNamespace("block/" + textureName)),
-                    itemModels.modelOutput
-            );
+            registerGlassWallModel(blockModels, wall, textureName);
+
+            // Create translucent wall inventory model
+            ResourceLocation itemModel = ExtendedModelTemplateBuilder.builder()
+                    .parent(ResourceLocation.withDefaultNamespace("block/wall_inventory"))
+                    .suffix("_inventory")
+                    .requiredTextureSlot(TextureSlot.WALL)
+                    .renderType("translucent")
+                    .build()
+                    .create(wall,
+                            new TextureMapping().put(TextureSlot.WALL,
+                                    ResourceLocation.withDefaultNamespace("block/" + textureName)),
+                            blockModels.modelOutput);
 
             itemModels.itemModelOutput.accept(
-                    wallInfo.wall().get().asItem(), ItemModelUtils.plainModel(itemModel)
+                    wall.asItem(), ItemModelUtils.plainModel(itemModel)
             );
-
         });
 
         MotrBlocks.REGISTERED_BUTTONS.forEach((textureName, buttonInfo) -> {
@@ -326,5 +332,4 @@ public class MotrModelProvider extends ModelProvider {
                 fence.asItem(), ItemModelUtils.plainModel(inventory)
         );
     }
-
 }
