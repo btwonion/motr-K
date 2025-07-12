@@ -117,6 +117,9 @@ public class MotrModelProvider extends ModelProvider {
             registerFenceGateModel(blockModels, itemModels, fenceGateInfo.fenceGate().get(), textureName);
         });
 
+        MotrBlocks.REGISTERED_STANDARD_STAIRS.forEach((textureName, stairInfo) -> {
+            registerStandardStairModel(blockModels, stairInfo.stair().get(), textureName);
+        });
     }
 
     private void registerStandardSlabModel(BlockModelGenerators blockModels, Block slab, String textureName) {
