@@ -113,6 +113,13 @@ public class MotrModelProvider extends ModelProvider {
             registerFenceModel(blockModels, itemModels, fenceInfo.fence().get(), textureName);
         });
 
+        MotrBlocks.REGISTERED_FENCE_GATES.forEach((textureName, fenceGateInfo) -> {
+            registerFenceGateModel(blockModels, itemModels, fenceGateInfo.fenceGate().get(), textureName);
+        });
+
+        MotrBlocks.REGISTERED_STANDARD_STAIRS.forEach((textureName, stairInfo) -> {
+            registerStandardStairModel(blockModels, stairInfo.stair().get(), textureName);
+        });
     }
 
     private void registerStandardSlabModel(BlockModelGenerators blockModels, Block slab, String textureName) {
@@ -332,4 +339,29 @@ public class MotrModelProvider extends ModelProvider {
                 fence.asItem(), ItemModelUtils.plainModel(inventory)
         );
     }
+
+    private void registerFenceGateModel(
+            BlockModelGenerators blockModels,
+            ItemModelGenerators itemModels,
+            Block fenceGate,
+            String textureName) {
+        TextureMapping mapping = new TextureMapping().put(TextureSlot.TEXTURE,
+                ResourceLocation.withDefaultNamespace("block/" + textureName));
+
+        ResourceLocation closed = ModelTemplates.FENCE_GATE_CLOSED.create(fenceGate, mapping, blockModels.modelOutput);
+        ResourceLocation open = ModelTemplates.FENCE_GATE_OPEN.create(fenceGate, mapping, blockModels.modelOutput);
+        ResourceLocation wall = ModelTemplates.FENCE_GATE_WALL_CLOSED.create(fenceGate, mapping,
+                blockModels.modelOutput);
+        ResourceLocation wallOpen = ModelTemplates.FENCE_GATE_WALL_OPEN.create(fenceGate, mapping,
+                blockModels.modelOutput);
+
+        blockModels.blockStateOutput.accept(
+                BlockModelGenerators.createFenceGate(fenceGate, open, closed, wallOpen, wall, true)
+        );
+
+        itemModels.itemModelOutput.accept(
+                fenceGate.asItem(), ItemModelUtils.plainModel(closed)
+        );
+    }
+
 }
