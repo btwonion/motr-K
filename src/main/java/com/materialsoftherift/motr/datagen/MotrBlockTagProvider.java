@@ -145,6 +145,9 @@ public class MotrBlockTagProvider extends BlockTagsProvider {
 
         tag(BlockTags.STAIRS)
                 .add(getAllStairBlocks());
+
+        tag(BlockTags.WOOL_CARPETS)
+                .add(MotrBlocks.HAY_CARPET.get());
         // spotless:on
 
     }

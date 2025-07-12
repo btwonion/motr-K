@@ -8,6 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ButtonBlock;
+import net.minecraft.world.level.block.CarpetBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.SlabBlock;
@@ -885,6 +886,8 @@ public class MotrBlocks {
 
     );
 
+    public static final DeferredBlock<CarpetBlock> HAY_CARPET = registerCarpet("hay_carpet", Blocks.HAY_BLOCK);
+
     private static <T extends Block> DeferredBlock<T> registerBlock(String key, Supplier<T> sup) {
         DeferredBlock<T> register = BLOCKS.register(key, sup);
         MotrItems.registerSimpleBlockItem(key, register);
@@ -939,6 +942,12 @@ public class MotrBlocks {
         DeferredBlock<StairBlock> stair = registerDevBlock(id, () -> new StairBlock(baseBlock.defaultBlockState(),
                 BlockBehaviour.Properties.ofFullCopy(baseBlock).setId(blockId(id))));
         return new StairInfo(stair, baseBlock);
+    }
+
+    private static DeferredBlock<CarpetBlock> registerCarpet(String id, Block baseBlock) {
+        return registerDevBlock(id, () -> new CarpetBlock(
+                BlockBehaviour.Properties.ofFullCopy(baseBlock).setId(blockId(id))
+        ));
     }
 
     private static ResourceKey<Block> blockId(String name) {

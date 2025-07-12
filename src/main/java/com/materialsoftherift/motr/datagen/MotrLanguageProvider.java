@@ -45,6 +45,8 @@ public class MotrLanguageProvider extends LanguageProvider {
 
         add("itemGroup." + MaterialsOfTheRift.MODID, "MOTR");
 
+        addBlock(MotrBlocks.HAY_CARPET, "Hay Carpet");
+
     }
 
     private static @NotNull String getTranslationString(Block block) {

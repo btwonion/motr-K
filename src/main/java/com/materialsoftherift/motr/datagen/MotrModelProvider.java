@@ -13,6 +13,7 @@ import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.client.data.models.model.TexturedModel;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -28,6 +29,10 @@ public class MotrModelProvider extends ModelProvider {
 
     @Override
     protected void registerModels(BlockModelGenerators blockModels, @NotNull ItemModelGenerators itemModels) {
+
+        blockModels.createTrivialBlock(MotrBlocks.HAY_CARPET.get(), TexturedModel.CARPET.updateTexture(
+                mapping -> mapping.put(TextureSlot.WOOL, ResourceLocation.withDefaultNamespace("block/hay_block_top"))
+        ));
 
         MotrBlocks.REGISTERED_STANDARD_SLABS.forEach((textureName, slabInfo) -> {
             registerStandardSlabModel(blockModels, slabInfo.slab().get(), textureName);

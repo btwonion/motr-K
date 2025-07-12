@@ -33,6 +33,8 @@ public class MotrBlockLootTableProvider extends BlockLootSubProvider {
         MotrBlocks.REGISTERED_GLASS_WALLS.values()
                 .forEach(wallInfo -> add(wallInfo.wall().get(), createSilkTouchOnlyTable(wallInfo.wall().get()))
                 );
+
+        dropSelf(MotrBlocks.HAY_CARPET.get());
     }
 
     @Override

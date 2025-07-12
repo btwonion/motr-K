@@ -115,6 +115,12 @@ public class MotrRecipeProvider extends RecipeProvider {
                     .save(this.output);
         });
 
+        ShapedRecipeBuilder.shaped(getter, RecipeCategory.BUILDING_BLOCKS, MotrBlocks.HAY_CARPET.get(), 4)
+                .pattern("GG")
+                .define('G', Items.HAY_BLOCK)
+                .unlockedBy("has_hay_block", this.has(Items.HAY_BLOCK))
+                .save(this.output);
+
     }
 
     // The runner to add to the data generator
