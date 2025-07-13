@@ -23,6 +23,8 @@ public class DataGenerators {
 
         event.createProvider(MotrRecipeProvider.Runner::new);
 
+        event.createBlockAndItemTags(MotrBlockTagProvider::new, MotrItemTagProvider::new);
+
         event.createProvider((output, lookupProvider) -> new LootTableProvider(output, Set.of(), List.of(
                 new LootTableProvider.SubProviderEntry(MotrBlockLootTableProvider::new, LootContextParamSets.BLOCK)),
                 lookupProvider));

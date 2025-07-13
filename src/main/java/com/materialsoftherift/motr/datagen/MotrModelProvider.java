@@ -9,9 +9,11 @@ import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.blockstates.Variant;
 import net.minecraft.client.data.models.blockstates.VariantProperties;
+import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.client.data.models.model.TexturedModel;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -28,12 +30,20 @@ public class MotrModelProvider extends ModelProvider {
     @Override
     protected void registerModels(BlockModelGenerators blockModels, @NotNull ItemModelGenerators itemModels) {
 
+        blockModels.createTrivialBlock(MotrBlocks.HAY_CARPET.get(), TexturedModel.CARPET.updateTexture(
+                mapping -> mapping.put(TextureSlot.WOOL, ResourceLocation.withDefaultNamespace("block/hay_block_top"))
+        ));
+
         MotrBlocks.REGISTERED_STANDARD_SLABS.forEach((textureName, slabInfo) -> {
             registerStandardSlabModel(blockModels, slabInfo.slab().get(), textureName);
         });
 
         MotrBlocks.REGISTERED_GLASS_SLABS.forEach((textureId, slabInfo) -> {
             registerGlassSlabModel(blockModels, slabInfo.slab().get(), textureId);
+        });
+
+        MotrBlocks.REGISTERED_TRIMM_SLABS.forEach((id, slabInfo) -> {
+            registerTrimmSlabModel(blockModels, slabInfo.slab().get(), id, id, id);
         });
 
         MotrBlocks.REGISTERED_DIRECTIONAL_SLABS.forEach((id, slabInfo) -> {
@@ -62,10 +72,59 @@ public class MotrModelProvider extends ModelProvider {
             }
         });
 
-        MotrBlocks.REGISTERED_TRIMM_SLABS.forEach((id, slabInfo) -> {
-            registerTrimmSlabModel(blockModels, slabInfo.slab().get(), id, id, id);
+        MotrBlocks.REGISTERED_STANDARD_WALLS.forEach((textureName, wallInfo) -> {
+            registerWallModel(blockModels, wallInfo.wall().get(), textureName);
+
+            ResourceLocation itemModel = ModelTemplates.WALL_INVENTORY.create(
+                    wallInfo.wall().get(),
+                    new TextureMapping().put(TextureSlot.WALL,
+                            ResourceLocation.withDefaultNamespace("block/" + textureName)),
+                    itemModels.modelOutput
+            );
+
+            itemModels.itemModelOutput.accept(
+                    wallInfo.wall().get().asItem(), ItemModelUtils.plainModel(itemModel)
+            );
+
         });
 
+        MotrBlocks.REGISTERED_GLASS_WALLS.forEach((textureName, wallInfo) -> {
+            Block wall = wallInfo.wall().get();
+
+            registerGlassWallModel(blockModels, wall, textureName);
+
+            // Create translucent wall inventory model
+            ResourceLocation itemModel = ExtendedModelTemplateBuilder.builder()
+                    .parent(ResourceLocation.withDefaultNamespace("block/wall_inventory"))
+                    .suffix("_inventory")
+                    .requiredTextureSlot(TextureSlot.WALL)
+                    .renderType("translucent")
+                    .build()
+                    .create(wall,
+                            new TextureMapping().put(TextureSlot.WALL,
+                                    ResourceLocation.withDefaultNamespace("block/" + textureName)),
+                            blockModels.modelOutput);
+
+            itemModels.itemModelOutput.accept(
+                    wall.asItem(), ItemModelUtils.plainModel(itemModel)
+            );
+        });
+
+        MotrBlocks.REGISTERED_BUTTONS.forEach((textureName, buttonInfo) -> {
+            registerButtonModel(blockModels, itemModels, buttonInfo.button().get(), textureName);
+        });
+
+        MotrBlocks.REGISTERED_FENCES.forEach((textureName, fenceInfo) -> {
+            registerFenceModel(blockModels, itemModels, fenceInfo.fence().get(), textureName);
+        });
+
+        MotrBlocks.REGISTERED_FENCE_GATES.forEach((textureName, fenceGateInfo) -> {
+            registerFenceGateModel(blockModels, itemModels, fenceGateInfo.fenceGate().get(), textureName);
+        });
+
+        MotrBlocks.REGISTERED_STANDARD_STAIRS.forEach((textureName, stairInfo) -> {
+            registerStandardStairModel(blockModels, stairInfo.stair().get(), textureName);
+        });
     }
 
     private void registerStandardSlabModel(BlockModelGenerators blockModels, Block slab, String textureName) {
@@ -195,6 +254,119 @@ public class MotrModelProvider extends ModelProvider {
                         .select(SlabType.BOTTOM, Variant.variant().with(VariantProperties.MODEL, bottom))
                         .select(SlabType.TOP, Variant.variant().with(VariantProperties.MODEL, top))
                         .select(SlabType.DOUBLE, Variant.variant().with(VariantProperties.MODEL, cube))));
+    }
+
+    private void registerWallModel(BlockModelGenerators blockModels, Block wall, String textureName) {
+        TextureMapping mapping = new TextureMapping().put(TextureSlot.WALL,
+                ResourceLocation.withDefaultNamespace("block/" + textureName));
+
+        ResourceLocation post = ModelTemplates.WALL_POST.create(wall, mapping, blockModels.modelOutput);
+        ResourceLocation lowSide = ModelTemplates.WALL_LOW_SIDE.create(wall, mapping, blockModels.modelOutput);
+        ResourceLocation tallSide = ModelTemplates.WALL_TALL_SIDE.create(wall, mapping, blockModels.modelOutput);
+
+        blockModels.blockStateOutput.accept(
+                BlockModelGenerators.createWall(wall, post, lowSide, tallSide)
+        );
+
+    }
+
+    private void registerGlassWallModel(BlockModelGenerators blockModels, Block wall, String textureName) {
+        ResourceLocation texture = ResourceLocation.withDefaultNamespace("block/" + textureName);
+        TextureMapping mapping = new TextureMapping().put(TextureSlot.WALL, texture);
+
+        ResourceLocation post = ExtendedModelTemplateBuilder.builder()
+                .parent(ResourceLocation.withDefaultNamespace("block/template_wall_post"))
+                .requiredTextureSlot(TextureSlot.WALL)
+                .renderType("translucent")
+                .build()
+                .create(wall, mapping, blockModels.modelOutput);
+
+        ResourceLocation lowSide = ExtendedModelTemplateBuilder.builder()
+                .parent(ResourceLocation.withDefaultNamespace("block/template_wall_side"))
+                .requiredTextureSlot(TextureSlot.WALL)
+                .renderType("translucent")
+                .build()
+                .createWithSuffix(wall, "_side", mapping, blockModels.modelOutput);
+
+        ResourceLocation tallSide = ExtendedModelTemplateBuilder.builder()
+                .parent(ResourceLocation.withDefaultNamespace("block/template_wall_side_tall"))
+                .requiredTextureSlot(TextureSlot.WALL)
+                .renderType("translucent")
+                .build()
+                .createWithSuffix(wall, "_side_tall", mapping, blockModels.modelOutput);
+
+        blockModels.blockStateOutput.accept(
+                BlockModelGenerators.createWall(wall, post, lowSide, tallSide)
+        );
+    }
+
+    private void registerButtonModel(
+            BlockModelGenerators blockModels,
+            ItemModelGenerators itemModels,
+            Block button,
+            String textureName) {
+        TextureMapping mapping = new TextureMapping().put(TextureSlot.TEXTURE,
+                ResourceLocation.withDefaultNamespace("block/" + textureName));
+
+        ResourceLocation pressed = ModelTemplates.BUTTON_PRESSED.createWithSuffix(button, "_pressed", mapping,
+                blockModels.modelOutput);
+        ResourceLocation unpressed = ModelTemplates.BUTTON.create(button, mapping, blockModels.modelOutput);
+        ResourceLocation inventory = ModelTemplates.BUTTON_INVENTORY.createWithSuffix(button, "_inventory", mapping,
+                blockModels.modelOutput);
+
+        blockModels.blockStateOutput.accept(
+                BlockModelGenerators.createButton(button, unpressed, pressed)
+        );
+
+        itemModels.itemModelOutput.accept(
+                button.asItem(), ItemModelUtils.plainModel(inventory)
+        );
+    }
+
+    private void registerFenceModel(
+            BlockModelGenerators blockModels,
+            ItemModelGenerators itemModels,
+            Block fence,
+            String textureName) {
+        TextureMapping mapping = new TextureMapping().put(TextureSlot.TEXTURE,
+                ResourceLocation.withDefaultNamespace("block/" + textureName));
+
+        ResourceLocation post = ModelTemplates.FENCE_POST.create(fence, mapping, blockModels.modelOutput);
+        ResourceLocation side = ModelTemplates.FENCE_SIDE.create(fence, mapping, blockModels.modelOutput);
+        ResourceLocation inventory = ModelTemplates.FENCE_INVENTORY.createWithSuffix(fence, "_inventory", mapping,
+                blockModels.modelOutput);
+
+        blockModels.blockStateOutput.accept(
+                BlockModelGenerators.createFence(fence, post, side)
+        );
+
+        itemModels.itemModelOutput.accept(
+                fence.asItem(), ItemModelUtils.plainModel(inventory)
+        );
+    }
+
+    private void registerFenceGateModel(
+            BlockModelGenerators blockModels,
+            ItemModelGenerators itemModels,
+            Block fenceGate,
+            String textureName) {
+        TextureMapping mapping = new TextureMapping().put(TextureSlot.TEXTURE,
+                ResourceLocation.withDefaultNamespace("block/" + textureName));
+
+        ResourceLocation closed = ModelTemplates.FENCE_GATE_CLOSED.create(fenceGate, mapping, blockModels.modelOutput);
+        ResourceLocation open = ModelTemplates.FENCE_GATE_OPEN.create(fenceGate, mapping, blockModels.modelOutput);
+        ResourceLocation wall = ModelTemplates.FENCE_GATE_WALL_CLOSED.create(fenceGate, mapping,
+                blockModels.modelOutput);
+        ResourceLocation wallOpen = ModelTemplates.FENCE_GATE_WALL_OPEN.create(fenceGate, mapping,
+                blockModels.modelOutput);
+
+        blockModels.blockStateOutput.accept(
+                BlockModelGenerators.createFenceGate(fenceGate, open, closed, wallOpen, wall, true)
+        );
+
+        itemModels.itemModelOutput.accept(
+                fenceGate.asItem(), ItemModelUtils.plainModel(closed)
+        );
     }
 
 }

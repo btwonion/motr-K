@@ -10,6 +10,7 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
@@ -57,6 +58,69 @@ public class MotrRecipeProvider extends RecipeProvider {
                     .unlockedBy("has_" + id, has(slabInfo.getBaseItem()))
                     .save(this.output);
         });
+
+        MotrBlocks.REGISTERED_STANDARD_WALLS.forEach((id, wallInfo) -> {
+            ShapedRecipeBuilder.shaped(getter, RecipeCategory.BUILDING_BLOCKS, wallInfo.wall().get(), 6)
+                    .pattern("###")
+                    .pattern("###")
+                    .define('#', wallInfo.getBaseItem())
+                    .unlockedBy("has_" + id, has(wallInfo.getBaseItem()))
+                    .save(this.output);
+        });
+
+        MotrBlocks.REGISTERED_GLASS_WALLS.forEach((id, wallInfo) -> {
+            ShapedRecipeBuilder.shaped(getter, RecipeCategory.BUILDING_BLOCKS, wallInfo.wall().get(), 6)
+                    .pattern("###")
+                    .pattern("###")
+                    .define('#', wallInfo.getBaseItem())
+                    .unlockedBy("has_" + id, has(wallInfo.getBaseItem()))
+                    .save(this.output);
+        });
+
+        MotrBlocks.REGISTERED_FENCES.forEach((id, fenceInfo) -> {
+            ShapedRecipeBuilder.shaped(getter, RecipeCategory.BUILDING_BLOCKS, fenceInfo.fence().get(), 3)
+                    .pattern("#S#")
+                    .pattern("#S#")
+                    .define('#', fenceInfo.getBaseItem())
+                    .define('S', Items.STICK)
+                    .unlockedBy("has_" + id, has(fenceInfo.getBaseItem()))
+                    .save(this.output);
+        });
+
+        MotrBlocks.REGISTERED_BUTTONS.forEach((id, buttonInfo) -> {
+            ShapedRecipeBuilder.shaped(getter, RecipeCategory.BUILDING_BLOCKS, buttonInfo.button().get(), 1)
+                    .pattern("#")
+                    .define('#', buttonInfo.getBaseItem())
+                    .unlockedBy("has_" + id, has(buttonInfo.getBaseItem()))
+                    .save(this.output);
+        });
+
+        MotrBlocks.REGISTERED_FENCE_GATES.forEach((id, fenceGateInfo) -> {
+            ShapedRecipeBuilder.shaped(getter, RecipeCategory.BUILDING_BLOCKS, fenceGateInfo.fenceGate().get(), 3)
+                    .pattern("S#S")
+                    .pattern("S#S")
+                    .define('#', fenceGateInfo.getBaseItem())
+                    .define('S', Items.STICK)
+                    .unlockedBy("has_" + id, has(fenceGateInfo.getBaseItem()))
+                    .save(this.output);
+        });
+
+        MotrBlocks.REGISTERED_STANDARD_STAIRS.forEach((id, stairInfo) -> {
+            ShapedRecipeBuilder.shaped(getter, RecipeCategory.BUILDING_BLOCKS, stairInfo.stair().get(), 4)
+                    .pattern("#  ")
+                    .pattern("## ")
+                    .pattern("###")
+                    .define('#', stairInfo.getBaseItem())
+                    .unlockedBy("has_" + id, has(stairInfo.getBaseItem()))
+                    .save(this.output);
+        });
+
+        ShapedRecipeBuilder.shaped(getter, RecipeCategory.BUILDING_BLOCKS, MotrBlocks.HAY_CARPET.get(), 4)
+                .pattern("GG")
+                .define('G', Items.HAY_BLOCK)
+                .unlockedBy("has_hay_block", this.has(Items.HAY_BLOCK))
+                .save(this.output);
+
     }
 
     // The runner to add to the data generator
