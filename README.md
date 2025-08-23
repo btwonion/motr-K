@@ -25,6 +25,7 @@
 If you're interested in contributing to the project, you can fork the repository and comment on any open issues.
 
 If you want a more involved role in the project, involving branches on the main repository and involvement in design discussions, join our discord: https://discord.gg/VkSeepd59S
+https://docs.google.com/spreadsheets/d/1-DAss24fvBh8Pi8aCTTBhMB0q9JUQbIJj_1tpq3ziQM/edit?gid=0#gid=0
 
 ---
 
