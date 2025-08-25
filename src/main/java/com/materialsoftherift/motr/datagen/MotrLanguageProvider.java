@@ -37,6 +37,7 @@ public class MotrLanguageProvider extends LanguageProvider {
 
         addButtonTranslations(MotrBlocks.REGISTERED_BUTTONS);
 
+        addFallingBlockTranslations(MotrBlocks.REGISTERED_FALLING_BLOCKS);
         addFenceTranslations(MotrBlocks.REGISTERED_FENCES);
 
         addFenceGateTranslations(MotrBlocks.REGISTERED_FENCE_GATES);
@@ -92,6 +93,12 @@ public class MotrLanguageProvider extends LanguageProvider {
         });
     }
 
+    private void addFallingBlockTranslations(Map<String, MotrBlocks.BlockInfo> blockMap) {
+        blockMap.forEach((baseName, buttonInfo) -> {
+            String translation = snakeCaseToCapitalizedCase(baseName);
+            addBlock(buttonInfo.block(), translation);
+        });
+    }
     private void addSlabTranslations(Map<String, MotrBlocks.SlabInfo> slabMap) {
         slabMap.forEach((baseName, slabInfo) -> {
             String translation = snakeCaseToCapitalizedCase(baseName) + " Slab";

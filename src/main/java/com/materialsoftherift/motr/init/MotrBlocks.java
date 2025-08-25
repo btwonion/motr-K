@@ -35,6 +35,28 @@ public class MotrBlocks {
         }
     }
 
+    public static class BlockInfo {
+        private final DeferredBlock<Block> block;
+        private final Block baseBlock;
+
+        public BlockInfo(DeferredBlock<Block> slab, Block baseBlock) {
+            this.block = slab;
+            this.baseBlock = baseBlock;
+        }
+
+        public DeferredBlock<Block> block() {
+            return block;
+        }
+
+        public Block baseBlock() {
+            return baseBlock;
+        }
+
+        public Item getBaseItem() {
+            return baseBlock.asItem();
+        }
+    }
+
     public static class SlabInfo {
         private final DeferredBlock<SlabBlock> slab;
         private final Block baseBlock;
@@ -607,6 +629,73 @@ public class MotrBlocks {
             Map.entry("mud", MUD_BUTTON)
     );
 
+    public static final BlockInfo SAND = new BlockInfo(
+            registerBasicBlock("sand", Blocks.SAND), Blocks.SAND);
+    public static final BlockInfo RED_SAND = new BlockInfo(
+            registerBasicBlock("red_sand", Blocks.RED_SAND), Blocks.RED_SAND);
+
+    public static final BlockInfo WHITE_CONCRETE_POWDER = new BlockInfo(
+            registerBasicBlock("white_concrete_powder", Blocks.WHITE_CONCRETE_POWDER), Blocks.WHITE_CONCRETE_POWDER);
+    public static final BlockInfo ORANGE_CONCRETE_POWDER = new BlockInfo(
+            registerBasicBlock("orange_concrete_powder", Blocks.ORANGE_CONCRETE_POWDER), Blocks.ORANGE_CONCRETE_POWDER);
+    public static final BlockInfo MAGENTA_CONCRETE_POWDER = new BlockInfo(
+            registerBasicBlock("magenta_concrete_powder", Blocks.MAGENTA_CONCRETE_POWDER),
+            Blocks.MAGENTA_CONCRETE_POWDER);
+    public static final BlockInfo LIGHT_BLUE_CONCRETE_POWDER = new BlockInfo(
+            registerBasicBlock("light_blue_concrete_powder", Blocks.LIGHT_BLUE_CONCRETE_POWDER),
+            Blocks.LIGHT_BLUE_CONCRETE_POWDER);
+    public static final BlockInfo YELLOW_CONCRETE_POWDER = new BlockInfo(
+            registerBasicBlock("yellow_concrete_powder", Blocks.YELLOW_CONCRETE_POWDER), Blocks.YELLOW_CONCRETE_POWDER);
+    public static final BlockInfo LIME_CONCRETE_POWDER = new BlockInfo(
+            registerBasicBlock("lime_concrete_powder", Blocks.LIME_CONCRETE_POWDER), Blocks.LIME_CONCRETE_POWDER);
+    public static final BlockInfo PINK_CONCRETE_POWDER = new BlockInfo(
+            registerBasicBlock("pink_concrete_powder", Blocks.PINK_CONCRETE_POWDER), Blocks.PINK_CONCRETE_POWDER);
+    public static final BlockInfo GRAY_CONCRETE_POWDER = new BlockInfo(
+            registerBasicBlock("gray_concrete_powder", Blocks.GRAY_CONCRETE_POWDER), Blocks.GRAY_CONCRETE_POWDER);
+    public static final BlockInfo LIGHT_GRAY_CONCRETE_POWDER = new BlockInfo(
+            registerBasicBlock("light_gray_concrete_powder", Blocks.LIGHT_GRAY_CONCRETE_POWDER),
+            Blocks.LIGHT_GRAY_CONCRETE_POWDER);
+    public static final BlockInfo CYAN_CONCRETE_POWDER = new BlockInfo(
+            registerBasicBlock("cyan_concrete_powder", Blocks.CYAN_CONCRETE_POWDER), Blocks.CYAN_CONCRETE_POWDER);
+    public static final BlockInfo PURPLE_CONCRETE_POWDER = new BlockInfo(
+            registerBasicBlock("purple_concrete_powder", Blocks.PURPLE_CONCRETE_POWDER), Blocks.PURPLE_CONCRETE_POWDER);
+    public static final BlockInfo BLUE_CONCRETE_POWDER = new BlockInfo(
+            registerBasicBlock("blue_concrete_powder", Blocks.BLUE_CONCRETE_POWDER), Blocks.BLUE_CONCRETE_POWDER);
+    public static final BlockInfo BROWN_CONCRETE_POWDER = new BlockInfo(
+            registerBasicBlock("brown_concrete_powder", Blocks.BROWN_CONCRETE_POWDER), Blocks.BROWN_CONCRETE_POWDER);
+    public static final BlockInfo GREEN_CONCRETE_POWDER = new BlockInfo(
+            registerBasicBlock("green_concrete_powder", Blocks.GREEN_CONCRETE_POWDER), Blocks.GREEN_CONCRETE_POWDER);
+    public static final BlockInfo RED_CONCRETE_POWDER = new BlockInfo(
+            registerBasicBlock("red_concrete_powder", Blocks.RED_CONCRETE_POWDER), Blocks.RED_CONCRETE_POWDER);
+    public static final BlockInfo BLACK_CONCRETE_POWDER = new BlockInfo(
+            registerBasicBlock("black_concrete_powder", Blocks.BLACK_CONCRETE_POWDER), Blocks.BLACK_CONCRETE_POWDER);
+
+    public static final BlockInfo GRAVEL = new BlockInfo(
+            registerBasicBlock("gravel", Blocks.GRAVEL), Blocks.GRAVEL);
+
+    public static final Map<String, BlockInfo> REGISTERED_FALLING_BLOCKS = Map.ofEntries(
+            Map.entry("sand", SAND), Map.entry("red_sand", RED_SAND),
+
+            Map.entry("white_concrete_powder", WHITE_CONCRETE_POWDER),
+            Map.entry("orange_concrete_powder", ORANGE_CONCRETE_POWDER),
+            Map.entry("magenta_concrete_powder", MAGENTA_CONCRETE_POWDER),
+            Map.entry("light_blue_concrete_powder", LIGHT_BLUE_CONCRETE_POWDER),
+            Map.entry("yellow_concrete_powder", YELLOW_CONCRETE_POWDER),
+            Map.entry("lime_concrete_powder", LIME_CONCRETE_POWDER),
+            Map.entry("pink_concrete_powder", PINK_CONCRETE_POWDER),
+            Map.entry("gray_concrete_powder", GRAY_CONCRETE_POWDER),
+            Map.entry("light_gray_concrete_powder", LIGHT_GRAY_CONCRETE_POWDER),
+            Map.entry("cyan_concrete_powder", CYAN_CONCRETE_POWDER),
+            Map.entry("purple_concrete_powder", PURPLE_CONCRETE_POWDER),
+            Map.entry("blue_concrete_powder", BLUE_CONCRETE_POWDER),
+            Map.entry("brown_concrete_powder", BROWN_CONCRETE_POWDER),
+            Map.entry("green_concrete_powder", GREEN_CONCRETE_POWDER),
+            Map.entry("red_concrete_powder", RED_CONCRETE_POWDER),
+            Map.entry("black_concrete_powder", BLACK_CONCRETE_POWDER),
+
+            Map.entry("gravel", GRAVEL)
+    );
+
     public static final FenceInfo WHITE_CONCRETE_FENCE = new FenceInfo(
             registerFenceBlock("white_concrete_fence", Blocks.WHITE_CONCRETE), Blocks.WHITE_CONCRETE);
     public static final FenceInfo LIGHT_GRAY_CONCRETE_FENCE = new FenceInfo(
@@ -923,6 +1012,12 @@ public class MotrBlocks {
         return registerBlock(id, () -> new ButtonBlock(
                 BlockSetType.STONE, 30,
                 BlockBehaviour.Properties.ofFullCopy(baseBlock).noCollission().strength(0.5F).setId(blockId(id))
+        ));
+    }
+
+    private static DeferredBlock<Block> registerBasicBlock(String id, Block baseBlock) {
+        return registerBlock(id, () -> new Block(
+                BlockBehaviour.Properties.ofFullCopy(baseBlock).setId(blockId(id))
         ));
     }
 

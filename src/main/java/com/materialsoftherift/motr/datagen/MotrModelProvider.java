@@ -10,6 +10,7 @@ import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.blockstates.Variant;
 import net.minecraft.client.data.models.blockstates.VariantProperties;
 import net.minecraft.client.data.models.model.ItemModelUtils;
+import net.minecraft.client.data.models.model.ModelLocationUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
@@ -112,6 +113,10 @@ public class MotrModelProvider extends ModelProvider {
 
         MotrBlocks.REGISTERED_BUTTONS.forEach((textureName, buttonInfo) -> {
             registerButtonModel(blockModels, itemModels, buttonInfo.button().get(), textureName);
+        });
+
+        MotrBlocks.REGISTERED_FALLING_BLOCKS.forEach((textureName, blockInfo) -> {
+            registerBasicFallingBlockModel(blockModels, itemModels, blockInfo.block().get(), textureName);
         });
 
         MotrBlocks.REGISTERED_FENCES.forEach((textureName, fenceInfo) -> {
@@ -320,6 +325,25 @@ public class MotrModelProvider extends ModelProvider {
 
         itemModels.itemModelOutput.accept(
                 button.asItem(), ItemModelUtils.plainModel(inventory)
+        );
+    }
+
+    private void registerBasicFallingBlockModel(
+            BlockModelGenerators blockModels,
+            ItemModelGenerators itemModels,
+            Block block,
+            String textureName) {
+        TextureMapping mapping = new TextureMapping().put(TextureSlot.ALL,
+                ResourceLocation.withDefaultNamespace("block/" + textureName));
+
+        ResourceLocation resourceLocation = ModelTemplates.CUBE_ALL.create(block, mapping, blockModels.modelOutput);
+
+        blockModels.blockStateOutput.accept(
+                BlockModelGenerators.createRotatedVariant(block, resourceLocation)
+        );
+
+        itemModels.itemModelOutput.accept(
+                block.asItem(), ItemModelUtils.plainModel(ModelLocationUtils.getModelLocation(block))
         );
     }
 

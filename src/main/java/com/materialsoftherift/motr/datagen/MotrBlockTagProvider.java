@@ -74,6 +74,7 @@ public class MotrBlockTagProvider extends BlockTagsProvider {
                 .add(MotrBlocks.CLAY_SLAB.slab().get())
                 .add(MotrBlocks.RESIN_BLOCK_SLAB.slab().get())
                 .add(getAllButtonBlocks())
+                .add(getAllFallingBlocks())
                 .add(getAllFenceBlocks())
                 .add(getAllWallBlocks())
                 .add(getAllStairBlocks());
@@ -105,7 +106,10 @@ public class MotrBlockTagProvider extends BlockTagsProvider {
                 .add(MotrBlocks.BLUE_CONCRETE_POWDER_SLAB.slab().get())
                 .add(MotrBlocks.PURPLE_CONCRETE_POWDER_SLAB.slab().get())
                 .add(MotrBlocks.MAGENTA_CONCRETE_POWDER_SLAB.slab().get())
-                .add(MotrBlocks.PINK_CONCRETE_POWDER_SLAB.slab().get());
+                .add(MotrBlocks.PINK_CONCRETE_POWDER_SLAB.slab().get())
+
+                .add(getAllFallingBlocks())
+        ;
 
         tag(BlockTags.DIRT)
                 .add(MotrBlocks.DIRT_SLAB.slab().get())
@@ -140,6 +144,45 @@ public class MotrBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.BUTTONS)
                 .add(getAllButtonBlocks());
 
+        tag(BlockTags.SAND)
+                .add(getAllSandBlocks());
+
+        tag(BlockTags.ENDERMAN_HOLDABLE)
+                .add(MotrBlocks.SAND.block().get())
+                .add(MotrBlocks.RED_SAND.block().get())
+                .add(MotrBlocks.GRAVEL.block().get())
+
+        tag(BlockTags.RABBITS_SPAWNABLE_ON)
+                .add(MotrBlocks.SAND.block().get());
+
+        tag(BlockTags.SMELTS_TO_GLASS)
+                .add(MotrBlocks.SAND.block().get())
+                .add(MotrBlocks.RED_SAND.block().get());
+
+        tag(BlockTags.BAMBOO_PLANTABLE_ON)
+                .add(MotrBlocks.GRAVEL.block().get());
+
+        tag(BlockTags.GOATS_SPAWNABLE_ON)
+                .add(MotrBlocks.GRAVEL.block().get());
+
+        tag(BlockTags.CONCRETE_POWDER)
+                .add(MotrBlocks.WHITE_CONCRETE_POWDER.block().get())
+                .add(MotrBlocks.ORANGE_CONCRETE_POWDER.block().get())
+                .add(MotrBlocks.MAGENTA_CONCRETE_POWDER.block().get())
+                .add(MotrBlocks.LIGHT_BLUE_CONCRETE_POWDER.block().get())
+                .add(MotrBlocks.YELLOW_CONCRETE_POWDER.block().get())
+                .add(MotrBlocks.LIME_CONCRETE_POWDER.block().get())
+                .add(MotrBlocks.PINK_CONCRETE_POWDER.block().get())
+                .add(MotrBlocks.GRAY_CONCRETE_POWDER.block().get())
+                .add(MotrBlocks.LIGHT_GRAY_CONCRETE_POWDER.block().get())
+                .add(MotrBlocks.CYAN_CONCRETE_POWDER.block().get())
+                .add(MotrBlocks.PURPLE_CONCRETE_POWDER.block().get())
+                .add(MotrBlocks.BLUE_CONCRETE_POWDER.block().get())
+                .add(MotrBlocks.BROWN_CONCRETE_POWDER.block().get())
+                .add(MotrBlocks.GREEN_CONCRETE_POWDER.block().get())
+                .add(MotrBlocks.RED_CONCRETE_POWDER.block().get())
+                .add(MotrBlocks.BLACK_CONCRETE_POWDER.block().get());
+
         tag(BlockTags.FENCE_GATES)
                 .add(getAllFenceGateBlocks());
 
@@ -173,6 +216,18 @@ public class MotrBlockTagProvider extends BlockTagsProvider {
                 .stream()
                 .map(buttonInfo -> buttonInfo.button().get())
                 .toArray(Block[]::new);
+    }
+
+    private Block[] getAllFallingBlocks() {
+        return MotrBlocks.REGISTERED_FALLING_BLOCKS.values()
+                .stream()
+                .map(buttonInfo -> buttonInfo.block().get())
+                .toArray(Block[]::new);
+    }
+
+    public static Block[] getAllSandBlocks() {
+        return new Block[] { MotrBlocks.SAND.block().get(), MotrBlocks.RED_SAND.block().get(),
+                MotrBlocks.SUSPICIOUS_SAND.block().get() };
     }
 
     private Block[] getAllFenceBlocks() {
