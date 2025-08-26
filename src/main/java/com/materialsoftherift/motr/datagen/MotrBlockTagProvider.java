@@ -75,6 +75,7 @@ public class MotrBlockTagProvider extends BlockTagsProvider {
                 .add(MotrBlocks.RESIN_BLOCK_SLAB.slab().get())
                 .add(getAllButtonBlocks())
                 .add(getAllFallingBlocks())
+                .add(getAllBrushableBlocks())
                 .add(getAllFenceBlocks())
                 .add(getAllWallBlocks())
                 .add(getAllStairBlocks());
@@ -109,6 +110,7 @@ public class MotrBlockTagProvider extends BlockTagsProvider {
                 .add(MotrBlocks.PINK_CONCRETE_POWDER_SLAB.slab().get())
 
                 .add(getAllFallingBlocks())
+                .add(getAllBrushableBlocks())
         ;
 
         tag(BlockTags.DIRT)
@@ -151,6 +153,7 @@ public class MotrBlockTagProvider extends BlockTagsProvider {
                 .add(MotrBlocks.SAND.block().get())
                 .add(MotrBlocks.RED_SAND.block().get())
                 .add(MotrBlocks.GRAVEL.block().get())
+                .add(MotrBlocks.SUSPICIOUS_GRAVEL.block().get());
 
         tag(BlockTags.RABBITS_SPAWNABLE_ON)
                 .add(MotrBlocks.SAND.block().get());
@@ -160,6 +163,7 @@ public class MotrBlockTagProvider extends BlockTagsProvider {
                 .add(MotrBlocks.RED_SAND.block().get());
 
         tag(BlockTags.BAMBOO_PLANTABLE_ON)
+                .add(MotrBlocks.SUSPICIOUS_GRAVEL.block().get())
                 .add(MotrBlocks.GRAVEL.block().get());
 
         tag(BlockTags.GOATS_SPAWNABLE_ON)
@@ -220,6 +224,13 @@ public class MotrBlockTagProvider extends BlockTagsProvider {
 
     private Block[] getAllFallingBlocks() {
         return MotrBlocks.REGISTERED_FALLING_BLOCKS.values()
+                .stream()
+                .map(buttonInfo -> buttonInfo.block().get())
+                .toArray(Block[]::new);
+    }
+
+    private Block[] getAllBrushableBlocks() {
+        return MotrBlocks.REGISTERED_BRUSHABLE_BLOCKS.values()
                 .stream()
                 .map(buttonInfo -> buttonInfo.block().get())
                 .toArray(Block[]::new);

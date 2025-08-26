@@ -5,7 +5,9 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "motr.refmap.json",
   "mixins": [
-    "InvokerBlockBehaviour"
+    "InvokerBlockBehaviour",
+    "MixinBlockEntityType",
+    "MixinBrushableBlock"
   ],
   "client": [
   ],

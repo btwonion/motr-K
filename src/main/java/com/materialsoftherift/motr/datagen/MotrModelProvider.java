@@ -119,6 +119,10 @@ public class MotrModelProvider extends ModelProvider {
             registerBasicFallingBlockModel(blockModels, itemModels, blockInfo.block().get(), textureName);
         });
 
+        MotrBlocks.REGISTERED_BRUSHABLE_BLOCKS.forEach((textureName, blockInfo) -> {
+            registerBrushableModel(blockModels, itemModels, blockInfo.block().get(), textureName);
+        });
+
         MotrBlocks.REGISTERED_FENCES.forEach((textureName, fenceInfo) -> {
             registerFenceModel(blockModels, itemModels, fenceInfo.fence().get(), textureName);
         });
@@ -344,6 +348,38 @@ public class MotrModelProvider extends ModelProvider {
 
         itemModels.itemModelOutput.accept(
                 block.asItem(), ItemModelUtils.plainModel(ModelLocationUtils.getModelLocation(block))
+        );
+    }
+
+    private void registerBrushableModel(
+            BlockModelGenerators blockModels,
+            ItemModelGenerators itemModels,
+            Block block,
+            String textureName) {
+        MultiVariantGenerator generator = MultiVariantGenerator.multiVariant(block)
+                .with(
+                        PropertyDispatch.property(BlockStateProperties.DUSTED)
+                                .generate(
+                                        value -> {
+                                            String s = "_" + value;
+                                            TextureMapping mapping = new TextureMapping().put(TextureSlot.ALL,
+                                                    ResourceLocation
+                                                            .withDefaultNamespace("block/" + textureName + s));
+                                            return Variant.variant()
+                                                    .with(
+                                                            VariantProperties.MODEL,
+                                                            ModelTemplates.CUBE_ALL.createWithSuffix(
+                                                                    block, s, mapping, blockModels.modelOutput
+                                                            )
+                                                    );
+                                        }
+                                )
+                );
+
+        blockModels.blockStateOutput.accept(generator);
+
+        itemModels.itemModelOutput.accept(
+                block.asItem(), ItemModelUtils.plainModel(ResourceLocation.withDefaultNamespace("block/" + textureName + "_0"))
         );
     }
 

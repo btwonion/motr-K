@@ -4,9 +4,12 @@ import com.materialsoftherift.motr.MaterialsOfTheRift;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BrushableBlock;
 import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.CarpetBlock;
 import net.minecraft.world.level.block.FenceBlock;
@@ -45,6 +48,28 @@ public class MotrBlocks {
         }
 
         public DeferredBlock<Block> block() {
+            return block;
+        }
+
+        public Block baseBlock() {
+            return baseBlock;
+        }
+
+        public Item getBaseItem() {
+            return baseBlock.asItem();
+        }
+    }
+
+    public static class BrushableBlockInfo {
+        private final DeferredBlock<BrushableBlock> block;
+        private final Block baseBlock;
+
+        public BrushableBlockInfo(DeferredBlock<BrushableBlock> brushableBlock, Block baseBlock) {
+            this.block = brushableBlock;
+            this.baseBlock = baseBlock;
+        }
+
+        public DeferredBlock<BrushableBlock> block() {
             return block;
         }
 
@@ -673,6 +698,15 @@ public class MotrBlocks {
     public static final BlockInfo GRAVEL = new BlockInfo(
             registerBasicBlock("gravel", Blocks.GRAVEL), Blocks.GRAVEL);
 
+    public static final BrushableBlockInfo SUSPICIOUS_SAND = new BrushableBlockInfo(
+            registerBrushableBlock("suspicious_sand", Blocks.SUSPICIOUS_SAND, SoundEvents.BRUSH_SAND,
+                    SoundEvents.BRUSH_SAND_COMPLETED),
+            Blocks.SUSPICIOUS_SAND);
+    public static final BrushableBlockInfo SUSPICIOUS_GRAVEL = new BrushableBlockInfo(
+            registerBrushableBlock("suspicious_gravel", Blocks.SUSPICIOUS_GRAVEL, SoundEvents.BRUSH_GRAVEL,
+                    SoundEvents.BRUSH_GRAVEL_COMPLETED),
+            Blocks.SUSPICIOUS_GRAVEL);
+
     public static final Map<String, BlockInfo> REGISTERED_FALLING_BLOCKS = Map.ofEntries(
             Map.entry("sand", SAND), Map.entry("red_sand", RED_SAND),
 
@@ -694,6 +728,10 @@ public class MotrBlocks {
             Map.entry("black_concrete_powder", BLACK_CONCRETE_POWDER),
 
             Map.entry("gravel", GRAVEL)
+    );
+
+    public static final Map<String, BrushableBlockInfo> REGISTERED_BRUSHABLE_BLOCKS = Map.ofEntries(
+            Map.entry("suspicious_sand", SUSPICIOUS_SAND), Map.entry("suspicious_gravel", SUSPICIOUS_GRAVEL)
     );
 
     public static final FenceInfo WHITE_CONCRETE_FENCE = new FenceInfo(
@@ -1017,6 +1055,17 @@ public class MotrBlocks {
 
     private static DeferredBlock<Block> registerBasicBlock(String id, Block baseBlock) {
         return registerBlock(id, () -> new Block(
+                BlockBehaviour.Properties.ofFullCopy(baseBlock).setId(blockId(id))
+        ));
+    }
+
+    private static DeferredBlock<BrushableBlock> registerBrushableBlock(
+            String id,
+            Block baseBlock,
+            SoundEvent soundEvent,
+            SoundEvent brushCompletedSoundEvent) {
+        return registerBlock(id, () -> new BrushableBlock(
+                baseBlock, soundEvent, brushCompletedSoundEvent,
                 BlockBehaviour.Properties.ofFullCopy(baseBlock).setId(blockId(id))
         ));
     }
