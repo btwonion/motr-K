@@ -95,7 +95,7 @@ public class MotrLanguageProvider extends LanguageProvider {
 
     private void addFallingBlockTranslations(Map<String, MotrBlocks.BlockInfo> blockMap) {
         blockMap.forEach((baseName, buttonInfo) -> {
-            String translation = snakeCaseToCapitalizedCase(baseName);
+            String translation = "Stable " + snakeCaseToCapitalizedCase(baseName);
             addBlock(buttonInfo.block(), translation);
         });
     }
