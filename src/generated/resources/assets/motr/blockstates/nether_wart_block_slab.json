@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "motr:block/nether_wart_block_slab"
+    },
+    "type=double": {
+      "model": "motr:block/nether_wart_block_slab_double"
+    },
+    "type=top": {
+      "model": "motr:block/nether_wart_block_slab_top_top"
+    }
+  }
+}

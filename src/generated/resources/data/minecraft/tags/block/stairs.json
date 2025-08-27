@@ -1,0 +1,26 @@
+{
+  "values": [
+    "motr:light_blue_concrete_stairs",
+    "motr:blue_concrete_stairs",
+    "motr:purple_concrete_stairs",
+    "motr:gilded_blackstone_stairs",
+    "motr:raw_iron_block_stairs",
+    "motr:white_concrete_stairs",
+    "motr:red_concrete_stairs",
+    "motr:cyan_concrete_stairs",
+    "motr:brown_concrete_stairs",
+    "motr:iron_block_stairs",
+    "motr:light_gray_concrete_stairs",
+    "motr:gray_concrete_stairs",
+    "motr:orange_concrete_stairs",
+    "motr:green_concrete_stairs",
+    "motr:pink_concrete_stairs",
+    "motr:raw_gold_block_stairs",
+    "motr:magenta_concrete_stairs",
+    "motr:black_concrete_stairs",
+    "motr:gold_block_stairs",
+    "motr:lime_concrete_stairs",
+    "motr:resin_block_stairs",
+    "motr:yellow_concrete_stairs"
+  ]
+}

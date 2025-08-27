@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "motr:block/green_concrete_powder"
+      },
+      {
+        "model": "motr:block/green_concrete_powder",
+        "y": 90
+      },
+      {
+        "model": "motr:block/green_concrete_powder",
+        "y": 180
+      },
+      {
+        "model": "motr:block/green_concrete_powder",
+        "y": 270
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "motr:block/black_concrete_powder_slab"
+    },
+    "type=double": {
+      "model": "motr:block/black_concrete_powder_slab_double"
+    },
+    "type=top": {
+      "model": "motr:block/black_concrete_powder_slab_top_top"
+    }
+  }
+}

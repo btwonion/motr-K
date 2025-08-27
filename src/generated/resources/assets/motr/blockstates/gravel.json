@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "motr:block/gravel"
+      },
+      {
+        "model": "motr:block/gravel",
+        "y": 90
+      },
+      {
+        "model": "motr:block/gravel",
+        "y": 180
+      },
+      {
+        "model": "motr:block/gravel",
+        "y": 270
+      }
+    ]
+  }
+}

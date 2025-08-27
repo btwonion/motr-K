@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "G": "minecraft:hay_block"
+  },
+  "pattern": [
+    "GG"
+  ],
+  "result": {
+    "count": 4,
+    "id": "motr:hay_carpet"
+  }
+}

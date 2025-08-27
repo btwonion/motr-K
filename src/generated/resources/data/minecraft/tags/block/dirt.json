@@ -1,0 +1,10 @@
+{
+  "values": [
+    "motr:dirt_slab",
+    "motr:dirt_path_slab",
+    "motr:coarse_dirt_slab",
+    "motr:rooted_dirt_slab",
+    "motr:podzol_slab",
+    "motr:mycelium_slab"
+  ]
+}

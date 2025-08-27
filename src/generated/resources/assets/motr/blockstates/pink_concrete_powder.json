@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "motr:block/pink_concrete_powder"
+      },
+      {
+        "model": "motr:block/pink_concrete_powder",
+        "y": 90
+      },
+      {
+        "model": "motr:block/pink_concrete_powder",
+        "y": 180
+      },
+      {
+        "model": "motr:block/pink_concrete_powder",
+        "y": 270
+      }
+    ]
+  }
+}

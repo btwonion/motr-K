@@ -1,0 +1,8 @@
+{
+  "parent": "motr:block/texture_slab_bottom",
+  "textures": {
+    "bottom": "minecraft:block/iron_block",
+    "side": "minecraft:block/iron_block",
+    "top": "minecraft:block/iron_block"
+  }
+}

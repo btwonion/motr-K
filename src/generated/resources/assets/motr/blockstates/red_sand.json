@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "motr:block/red_sand"
+      },
+      {
+        "model": "motr:block/red_sand",
+        "y": 90
+      },
+      {
+        "model": "motr:block/red_sand",
+        "y": 180
+      },
+      {
+        "model": "motr:block/red_sand",
+        "y": 270
+      }
+    ]
+  }
+}
