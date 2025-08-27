@@ -14,24 +14,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Gui.class)
 public class MixinGui {
 
-    @Inject(
-        method = "renderSlot",
-        at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/client/gui/GuiGraphics;renderItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;II)V",
-            shift = At.Shift.AFTER
-        )
-    )
+    @Inject(method = "renderSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;renderItemDecorations(Lnet/minecraft/client/gui/Font;Lnet/minecraft/world/item/ItemStack;II)V", shift = At.Shift.AFTER))
     private void renderSlot(
-        GuiGraphics guiGraphics,
-        int x,
-        int y,
-        DeltaTracker deltaTracker,
-        Player player,
-        ItemStack itemStack,
-        int seed,
-        CallbackInfo ci
-    ) {
+            GuiGraphics guiGraphics,
+            int x,
+            int y,
+            DeltaTracker deltaTracker,
+            Player player,
+            ItemStack itemStack,
+            int seed,
+            CallbackInfo ci) {
         GuiHelper.renderDecorations(guiGraphics, itemStack, x, y);
     }
 }
