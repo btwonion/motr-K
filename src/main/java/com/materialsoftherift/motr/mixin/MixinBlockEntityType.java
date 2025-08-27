@@ -16,15 +16,18 @@ import java.util.function.Supplier;
 @Mixin(BlockEntityType.class)
 public class MixinBlockEntityType {
 
-    @Unique private static Supplier<Block> motr_K$suspiciousSand = Suppliers
-            .memoize(() -> MotrBlocks.SUSPICIOUS_SAND.block().get());
-    @Unique private static Supplier<Block> motr_K$suspiciousGravel = Suppliers
+    @Unique private static Supplier<Block> suspiciousSand = Suppliers.memoize(() -> MotrBlocks.SUSPICIOUS_SAND.block().get());
+    @Unique private static Supplier<Block> suspiciousGravel = Suppliers
             .memoize(() -> MotrBlocks.SUSPICIOUS_GRAVEL.block().get());
 
     @ModifyReceiver(method = "isValid", at = @At(value = "INVOKE", target = "Ljava/util/Set;contains(Ljava/lang/Object;)Z"))
     private static Set<Block> modifyBrushableBlockArgs(Set<Block> original, Object toTest) {
-        if (!(toTest instanceof Block block)) return original;
-        if (block != motr_K$suspiciousSand.get() && block != motr_K$suspiciousGravel.get()) return original;
+        if (!(toTest instanceof Block block)) {
+            return original;
+        }
+        if (block != suspiciousSand.get() && block != suspiciousGravel.get()) {
+            return original;
+        }
         Set<Block> newBlocks = new HashSet<>(original);
         newBlocks.add(MotrBlocks.SUSPICIOUS_SAND.block().get());
         newBlocks.add(MotrBlocks.SUSPICIOUS_GRAVEL.block().get());
