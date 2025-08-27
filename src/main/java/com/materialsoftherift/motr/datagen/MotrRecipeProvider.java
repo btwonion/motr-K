@@ -111,6 +111,14 @@ public class MotrRecipeProvider extends RecipeProvider {
                     .save(this.output);
         });
 
+        MotrBlocks.REGISTERED_ANVIL_BLOCKS.forEach((id, buttonInfo) -> {
+            ShapedRecipeBuilder.shaped(getter, RecipeCategory.BUILDING_BLOCKS, buttonInfo.block().get(), 1)
+                    .pattern("#")
+                    .define('#', buttonInfo.getBaseItem())
+                    .unlockedBy("has_" + id, has(buttonInfo.getBaseItem()))
+                    .save(this.output);
+        });
+
         MotrBlocks.REGISTERED_FENCE_GATES.forEach((id, fenceGateInfo) -> {
             ShapedRecipeBuilder.shaped(getter, RecipeCategory.BUILDING_BLOCKS, fenceGateInfo.fenceGate().get(), 3)
                     .pattern("S#S")

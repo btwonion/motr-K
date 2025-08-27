@@ -25,6 +25,7 @@ public class MotrBlockLootTableProvider extends BlockLootSubProvider {
         MotrBlocks.REGISTERED_BUTTONS.values().forEach(buttonInfo -> dropSelf(buttonInfo.button().get()));
         MotrBlocks.REGISTERED_FALLING_BLOCKS.values().forEach(blockInfo -> dropSelf(blockInfo.block().get()));
         MotrBlocks.REGISTERED_BRUSHABLE_BLOCKS.values().forEach(blockInfo -> dropSelf(blockInfo.block().get()));
+        MotrBlocks.REGISTERED_ANVIL_BLOCKS.values().forEach(blockInfo -> dropSelf(blockInfo.block().get()));
         MotrBlocks.REGISTERED_FENCES.values().forEach(fenceInfo -> dropSelf(fenceInfo.fence().get()));
         MotrBlocks.REGISTERED_FENCE_GATES.values().forEach(fenceGateInfo -> dropSelf(fenceGateInfo.fenceGate().get()));
         MotrBlocks.REGISTERED_STANDARD_STAIRS.values().forEach(stairInfo -> dropSelf(stairInfo.stair().get()));

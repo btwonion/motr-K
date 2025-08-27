@@ -195,6 +195,11 @@ public class MotrBlockTagProvider extends BlockTagsProvider {
 
         tag(BlockTags.WOOL_CARPETS)
                 .add(MotrBlocks.HAY_CARPET.get());
+
+        tag(BlockTags.ANVIL)
+            .add(MotrBlocks.ANVIL.block().get())
+            .add(MotrBlocks.CHIPPED_ANVIL.block().get())
+            .add(MotrBlocks.DAMAGED_ANVIL.block().get());
         // spotless:on
 
     }

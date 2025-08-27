@@ -123,6 +123,10 @@ public class MotrModelProvider extends ModelProvider {
             registerBrushableModel(blockModels, itemModels, blockInfo.block().get(), textureName);
         });
 
+        MotrBlocks.REGISTERED_ANVIL_BLOCKS.forEach((textureName, blockInfo) -> {
+            registerAnvilModel(blockModels, itemModels, blockInfo.block().get(), textureName);
+        });
+
         MotrBlocks.REGISTERED_FENCES.forEach((textureName, fenceInfo) -> {
             registerFenceModel(blockModels, itemModels, fenceInfo.fence().get(), textureName);
         });
@@ -380,6 +384,24 @@ public class MotrModelProvider extends ModelProvider {
         itemModels.itemModelOutput.accept(
                 block.asItem(),
                 ItemModelUtils.plainModel(ResourceLocation.withDefaultNamespace("block/" + textureName + "_0"))
+        );
+    }
+
+    private void registerAnvilModel(
+            BlockModelGenerators blockModels,
+            ItemModelGenerators itemModels,
+            Block block,
+            String textureName) {
+        TextureMapping mapping = new TextureMapping().put(TextureSlot.TOP,
+                ResourceLocation.withDefaultNamespace("block/" + textureName + "_top"));
+
+        ResourceLocation resourceLocation = ModelTemplates.ANVIL.create(block, mapping, blockModels.modelOutput);
+        MultiVariantGenerator generator = MultiVariantGenerator.multiVariant(block,
+                Variant.variant().with(VariantProperties.MODEL, resourceLocation));
+        blockModels.blockStateOutput.accept(generator.with(BlockModelGenerators.createHorizontalFacingDispatchAlt()));
+
+        itemModels.itemModelOutput.accept(
+                block.asItem(), ItemModelUtils.plainModel(ResourceLocation.withDefaultNamespace("block/" + textureName))
         );
     }
 

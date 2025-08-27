@@ -7,7 +7,8 @@
   "mixins": [
     "InvokerBlockBehaviour",
     "MixinBlockEntityType",
-    "MixinBrushableBlock"
+    "MixinBrushableBlock",
+    "MixinFallingBlock"
   ],
   "client": [
   ],

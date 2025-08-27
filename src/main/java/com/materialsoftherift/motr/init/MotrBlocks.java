@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.AnvilBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BrushableBlock;
@@ -70,6 +71,28 @@ public class MotrBlocks {
         }
 
         public DeferredBlock<BrushableBlock> block() {
+            return block;
+        }
+
+        public Block baseBlock() {
+            return baseBlock;
+        }
+
+        public Item getBaseItem() {
+            return baseBlock.asItem();
+        }
+    }
+
+    public static class AnvilBlockInfo {
+        private final DeferredBlock<AnvilBlock> block;
+        private final Block baseBlock;
+
+        public AnvilBlockInfo(DeferredBlock<AnvilBlock> anvilBlock, Block baseBlock) {
+            this.block = anvilBlock;
+            this.baseBlock = baseBlock;
+        }
+
+        public DeferredBlock<AnvilBlock> block() {
             return block;
         }
 
@@ -707,6 +730,16 @@ public class MotrBlocks {
                     SoundEvents.BRUSH_GRAVEL_COMPLETED),
             Blocks.SUSPICIOUS_GRAVEL);
 
+    public static final AnvilBlockInfo ANVIL = new AnvilBlockInfo(
+            registerAnvilBlock("anvil", Blocks.ANVIL), Blocks.ANVIL
+    );
+    public static final AnvilBlockInfo CHIPPED_ANVIL = new AnvilBlockInfo(
+            registerAnvilBlock("chipped_anvil", Blocks.CHIPPED_ANVIL), Blocks.CHIPPED_ANVIL
+    );
+    public static final AnvilBlockInfo DAMAGED_ANVIL = new AnvilBlockInfo(
+            registerAnvilBlock("damaged_anvil", Blocks.DAMAGED_ANVIL), Blocks.DAMAGED_ANVIL
+    );
+
     public static final Map<String, BlockInfo> REGISTERED_FALLING_BLOCKS = Map.ofEntries(
             Map.entry("sand", SAND), Map.entry("red_sand", RED_SAND),
 
@@ -732,6 +765,11 @@ public class MotrBlocks {
 
     public static final Map<String, BrushableBlockInfo> REGISTERED_BRUSHABLE_BLOCKS = Map.ofEntries(
             Map.entry("suspicious_sand", SUSPICIOUS_SAND), Map.entry("suspicious_gravel", SUSPICIOUS_GRAVEL)
+    );
+
+    public static final Map<String, AnvilBlockInfo> REGISTERED_ANVIL_BLOCKS = Map.ofEntries(
+            Map.entry("anvil", ANVIL), Map.entry("chipped_anvil", CHIPPED_ANVIL),
+            Map.entry("damaged_anvil", DAMAGED_ANVIL)
     );
 
     public static final FenceInfo WHITE_CONCRETE_FENCE = new FenceInfo(
@@ -1066,6 +1104,12 @@ public class MotrBlocks {
             SoundEvent brushCompletedSoundEvent) {
         return registerBlock(id, () -> new BrushableBlock(
                 baseBlock, soundEvent, brushCompletedSoundEvent,
+                BlockBehaviour.Properties.ofFullCopy(baseBlock).setId(blockId(id))
+        ));
+    }
+
+    private static DeferredBlock<AnvilBlock> registerAnvilBlock(String id, Block baseBlock) {
+        return registerBlock(id, () -> new AnvilBlock(
                 BlockBehaviour.Properties.ofFullCopy(baseBlock).setId(blockId(id))
         ));
     }
