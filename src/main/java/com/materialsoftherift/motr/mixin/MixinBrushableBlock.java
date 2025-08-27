@@ -15,7 +15,7 @@ public class MixinBrushableBlock {
 
     @Unique
     private Supplier<Boolean> motr_K$isMotr = Suppliers.memoize(() ->
-        (Object) this == MotrBlocks.SUSPICIOUS_GRAVEL.block().get() || (Object) this == MotrBlocks.SUSPICIOUS_SAND.block().get()
+        (BrushableBlock) (Object) this == MotrBlocks.SUSPICIOUS_GRAVEL.block().get() || (Object) this == MotrBlocks.SUSPICIOUS_SAND.block().get()
     );
 
     @ModifyExpressionValue(

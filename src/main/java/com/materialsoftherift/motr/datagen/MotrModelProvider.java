@@ -363,8 +363,7 @@ public class MotrModelProvider extends ModelProvider {
                                         value -> {
                                             String s = "_" + value;
                                             TextureMapping mapping = new TextureMapping().put(TextureSlot.ALL,
-                                                    ResourceLocation
-                                                            .withDefaultNamespace("block/" + textureName + s));
+                                                    ResourceLocation.withDefaultNamespace("block/" + textureName + s));
                                             return Variant.variant()
                                                     .with(
                                                             VariantProperties.MODEL,
@@ -379,7 +378,8 @@ public class MotrModelProvider extends ModelProvider {
         blockModels.blockStateOutput.accept(generator);
 
         itemModels.itemModelOutput.accept(
-                block.asItem(), ItemModelUtils.plainModel(ResourceLocation.withDefaultNamespace("block/" + textureName + "_0"))
+                block.asItem(),
+                ItemModelUtils.plainModel(ResourceLocation.withDefaultNamespace("block/" + textureName + "_0"))
         );
     }
 
