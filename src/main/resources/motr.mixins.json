@@ -11,6 +11,8 @@
     "MixinFallingBlock"
   ],
   "client": [
+    "MixinGui",
+    "MixinGuiGraphics"
   ],
   "injectors": {
     "defaultRequire": 1
