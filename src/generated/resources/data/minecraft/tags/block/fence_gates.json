@@ -1,5 +1,9 @@
 {
   "values": [
+    "motr:red_concrete_fence_gate",
+    "motr:yellow_concrete_fence_gate",
+    "motr:purple_terracotta_fence_gate",
+    "motr:mud_fence_gate",
     "motr:lime_concrete_fence_gate",
     "motr:orange_concrete_fence_gate",
     "motr:orange_terracotta_fence_gate",
@@ -30,10 +34,6 @@
     "motr:gray_concrete_fence_gate",
     "motr:cyan_concrete_fence_gate",
     "motr:white_terracotta_fence_gate",
-    "motr:light_gray_concrete_fence_gate",
-    "motr:red_concrete_fence_gate",
-    "motr:yellow_concrete_fence_gate",
-    "motr:purple_terracotta_fence_gate",
-    "motr:mud_fence_gate"
+    "motr:light_gray_concrete_fence_gate"
   ]
 }

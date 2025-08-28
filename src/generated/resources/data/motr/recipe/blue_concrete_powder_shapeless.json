@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "id",
+  "ingredients": [
+    "minecraft:blue_concrete_powder",
+    "minecraft:chorus_flower"
+  ],
+  "result": {
+    "count": 1,
+    "id": "motr:blue_concrete_powder"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "motr:suspicious_sand"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:suspicious_sand"
+  }
+}

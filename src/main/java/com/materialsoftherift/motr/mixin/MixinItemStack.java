@@ -21,23 +21,16 @@ public abstract class MixinItemStack {
     @Shadow
     public abstract Component getDisplayName();
 
-    @Inject(
-        method = "getTooltipLines",
-        at = @At(
-            value = "INVOKE",
-            target = "Ljava/util/List;add(Ljava/lang/Object;)Z",
-            ordinal = 0,
-            shift = At.Shift.AFTER
-        )
-    )
+    @Inject(method = "getTooltipLines", at = @At(value = "INVOKE", target = "Ljava/util/List;add(Ljava/lang/Object;)Z", ordinal = 0, shift = At.Shift.AFTER))
     private void addHoverText(
-        Item.TooltipContext tooltipContext,
-        Player player,
-        TooltipFlag tooltipFlag,
-        CallbackInfoReturnable<List<Component>> cir,
-        @Local List<Component> components
-    ) {
-        if (!getDisplayName().getString().startsWith("[Stable ")) return;
+            Item.TooltipContext tooltipContext,
+            Player player,
+            TooltipFlag tooltipFlag,
+            CallbackInfoReturnable<List<Component>> cir,
+            @Local List<Component> components) {
+        if (!getDisplayName().getString().startsWith("[Stable ")) {
+            return;
+        }
         components.add(Component.literal("Ignores gravity").withStyle(ChatFormatting.GRAY));
     }
 }

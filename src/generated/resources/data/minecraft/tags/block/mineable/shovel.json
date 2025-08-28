@@ -26,6 +26,8 @@
     "motr:purple_concrete_powder_slab",
     "motr:magenta_concrete_powder_slab",
     "motr:pink_concrete_powder_slab",
+    "motr:light_gray_concrete_powder",
+    "motr:blue_concrete_powder",
     "motr:black_concrete_powder",
     "motr:lime_concrete_powder",
     "motr:white_concrete_powder",
@@ -43,9 +45,7 @@
     "motr:purple_concrete_powder",
     "motr:brown_concrete_powder",
     "motr:sand",
-    "motr:light_gray_concrete_powder",
-    "motr:blue_concrete_powder",
-    "motr:suspicious_gravel",
-    "motr:suspicious_sand"
+    "motr:suspicious_sand",
+    "motr:suspicious_gravel"
   ]
 }

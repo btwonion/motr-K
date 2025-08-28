@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "motr:cyan_concrete_powder"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:cyan_concrete_powder"
+  }
+}

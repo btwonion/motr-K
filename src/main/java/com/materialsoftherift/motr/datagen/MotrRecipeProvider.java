@@ -9,8 +9,11 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
@@ -95,28 +98,16 @@ public class MotrRecipeProvider extends RecipeProvider {
                     .save(this.output);
         });
 
-        MotrBlocks.REGISTERED_FALLING_BLOCKS.forEach((id, buttonInfo) -> {
-            ShapedRecipeBuilder.shaped(getter, RecipeCategory.BUILDING_BLOCKS, buttonInfo.block().get(), 1)
-                    .pattern("#")
-                    .define('#', buttonInfo.getBaseItem())
-                    .unlockedBy("has_" + id, has(buttonInfo.getBaseItem()))
-                    .save(this.output);
+        MotrBlocks.REGISTERED_FALLING_BLOCKS.forEach((id, blockInfo) -> {
+            addStableRecipes(getter, blockInfo.block().get(), blockInfo.getBaseItem(), id);
         });
 
-        MotrBlocks.REGISTERED_BRUSHABLE_BLOCKS.forEach((id, buttonInfo) -> {
-            ShapedRecipeBuilder.shaped(getter, RecipeCategory.BUILDING_BLOCKS, buttonInfo.block().get(), 1)
-                    .pattern("#")
-                    .define('#', buttonInfo.getBaseItem())
-                    .unlockedBy("has_" + id, has(buttonInfo.getBaseItem()))
-                    .save(this.output);
+        MotrBlocks.REGISTERED_BRUSHABLE_BLOCKS.forEach((id, blockInfo) -> {
+            addStableRecipes(getter, blockInfo.block().get(), blockInfo.getBaseItem(), id);
         });
 
-        MotrBlocks.REGISTERED_ANVIL_BLOCKS.forEach((id, buttonInfo) -> {
-            ShapedRecipeBuilder.shaped(getter, RecipeCategory.BUILDING_BLOCKS, buttonInfo.block().get(), 1)
-                    .pattern("#")
-                    .define('#', buttonInfo.getBaseItem())
-                    .unlockedBy("has_" + id, has(buttonInfo.getBaseItem()))
-                    .save(this.output);
+        MotrBlocks.REGISTERED_ANVIL_BLOCKS.forEach((id, blockInfo) -> {
+            addStableRecipes(getter, blockInfo.block().get(), blockInfo.getBaseItem(), id);
         });
 
         MotrBlocks.REGISTERED_FENCE_GATES.forEach((id, fenceGateInfo) -> {
@@ -165,5 +156,32 @@ public class MotrRecipeProvider extends RecipeProvider {
         public @NotNull String getName() {
             return "Materials of the Rift's Recipes";
         }
+    }
+
+    private void addStableRecipes(HolderGetter<Item> getter, Block block, Item baseItem, String id) {
+        ShapedRecipeBuilder.shaped(
+                getter, RecipeCategory.BUILDING_BLOCKS, block, 8
+        )
+                .group("id")
+                .pattern("###")
+                .pattern("#f#")
+                .pattern("###")
+                .define('#', baseItem)
+                .define('f', Items.POPPED_CHORUS_FRUIT)
+                .unlockedBy("has_" + id, has(baseItem))
+                .save(this.output, "motr:" + id + "_shaped");
+
+        ShapelessRecipeBuilder.shapeless(
+                getter, RecipeCategory.BUILDING_BLOCKS, block, 1
+        )
+                .group("id")
+                .requires(baseItem)
+                .requires(Blocks.CHORUS_FLOWER)
+                .unlockedBy("has_" + id, has(baseItem))
+                .save(this.output, "motr:" + id + "_shapeless");
+
+        ShapelessRecipeBuilder.shapeless(
+                getter, RecipeCategory.BUILDING_BLOCKS, baseItem, 1
+        ).requires(block).unlockedBy("has_" + id, has(baseItem)).save(this.output, "motr:" + id + "_revert");
     }
 }

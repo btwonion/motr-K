@@ -1,5 +1,7 @@
 {
   "values": [
+    "motr:resin_block_stairs",
+    "motr:yellow_concrete_stairs",
     "motr:light_blue_concrete_stairs",
     "motr:blue_concrete_stairs",
     "motr:purple_concrete_stairs",
@@ -19,8 +21,6 @@
     "motr:magenta_concrete_stairs",
     "motr:black_concrete_stairs",
     "motr:gold_block_stairs",
-    "motr:lime_concrete_stairs",
-    "motr:resin_block_stairs",
-    "motr:yellow_concrete_stairs"
+    "motr:lime_concrete_stairs"
   ]
 }

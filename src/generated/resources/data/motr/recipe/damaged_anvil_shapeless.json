@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "id",
+  "ingredients": [
+    "minecraft:damaged_anvil",
+    "minecraft:chorus_flower"
+  ],
+  "result": {
+    "count": 1,
+    "id": "motr:damaged_anvil"
+  }
+}

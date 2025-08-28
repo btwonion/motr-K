@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "id",
+  "key": {
+    "#": "minecraft:suspicious_sand",
+    "f": "minecraft:popped_chorus_fruit"
+  },
+  "pattern": [
+    "###",
+    "#f#",
+    "###"
+  ],
+  "result": {
+    "count": 8,
+    "id": "motr:suspicious_sand"
+  }
+}

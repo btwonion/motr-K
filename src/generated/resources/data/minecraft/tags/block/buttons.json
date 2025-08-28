@@ -1,5 +1,9 @@
 {
   "values": [
+    "motr:red_concrete_button",
+    "motr:yellow_concrete_button",
+    "motr:purple_terracotta_button",
+    "motr:mud_button",
     "motr:lime_concrete_button",
     "motr:orange_concrete_button",
     "motr:orange_terracotta_button",
@@ -30,10 +34,6 @@
     "motr:cyan_concrete_button",
     "motr:gray_concrete_button",
     "motr:white_terracotta_button",
-    "motr:light_gray_concrete_button",
-    "motr:red_concrete_button",
-    "motr:yellow_concrete_button",
-    "motr:purple_terracotta_button",
-    "motr:mud_button"
+    "motr:light_gray_concrete_button"
   ]
 }
