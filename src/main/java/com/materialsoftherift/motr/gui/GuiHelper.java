@@ -4,7 +4,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
@@ -13,8 +12,7 @@ public class GuiHelper {
             "textures/gui/asterisk.png");
 
     public static void renderDecorations(GuiGraphics guiGraphics, ItemStack itemStack, int x, int y) {
-        ResourceLocation location = BuiltInRegistries.ITEM.getKey(itemStack.getItem());
-        if (!"motr".equals(location.getNamespace())) {
+        if (!itemStack.getDisplayName().getString().startsWith("[Stable ")) {
             return;
         }
 

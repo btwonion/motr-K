@@ -7,11 +7,11 @@
   "mixins": [
     "InvokerBlockBehaviour",
     "MixinBlockEntityType",
+    "MixinItemStack",
     "MixinBrushableBlock",
     "MixinFallingBlock"
   ],
   "client": [
-    "MixinGui",
     "MixinGuiGraphics"
   ],
   "injectors": {
